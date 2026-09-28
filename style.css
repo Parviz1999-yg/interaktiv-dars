@@ -2723,3 +2723,27 @@ button {
     text-shadow:
         0 0 18px rgba(0, 220, 255, 0.18);
 }
+
+/* =========================================
+   INTERAKTIV TUGMALAR
+   ========================================= */
+
+.construct-block,
+.constructor-bottom button,
+.map-row,
+.tech-step,
+.final-flow button {
+    font: inherit;
+    color: inherit;
+    cursor: pointer;
+    border: none;
+    outline: none;
+}
+
+.construct-block:focus,
+.constructor-bottom button:focus,
+.map-row:focus,
+.tech-step:focus,
+.final-flow button:focus {
+    outline: none;
+}
