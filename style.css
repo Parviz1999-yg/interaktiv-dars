@@ -2518,3 +2518,208 @@ button {
         transition-duration: 0.01ms !important;
     }
 }
+
+/* =========================================
+   YORQINROQ KO‘RINISH — LIGHT ENHANCEMENT
+   ========================================= */
+
+body {
+    background:
+        radial-gradient(
+            circle at 15% 20%,
+            rgba(0, 200, 255, 0.10),
+            transparent 30%
+        ),
+        radial-gradient(
+            circle at 85% 80%,
+            rgba(130, 80, 255, 0.10),
+            transparent 30%
+        ),
+        linear-gradient(
+            135deg,
+            #0b1220 0%,
+            #101a2d 50%,
+            #0b1425 100%
+        );
+
+    color: #f4f8ff;
+}
+
+
+/* Asosiy oynalar */
+
+.screen {
+    background:
+        radial-gradient(
+            circle at 50% 0%,
+            rgba(0, 210, 255, 0.055),
+            transparent 45%
+        );
+}
+
+
+/* Oddiy matnlar */
+
+.slide-description,
+.slide-description p {
+    color: rgba(240, 247, 255, 0.88);
+}
+
+.lead-text {
+    color: #ffffff !important;
+}
+
+
+/* Sarlavhalar */
+
+#slideTitle {
+    color: #ffffff;
+    text-shadow:
+        0 0 25px rgba(0, 210, 255, 0.12);
+}
+
+
+/* Yorqin aksent */
+
+.section-label {
+    color: #5ee7ff !important;
+    text-shadow:
+        0 0 15px rgba(0, 220, 255, 0.35);
+}
+
+
+/* Kartochkalar */
+
+.mini-card,
+.concept-node,
+.scenario-grid button,
+.construct-block,
+.tech-step,
+.ready-box,
+.important-question,
+.concept-info,
+.method-result {
+    background:
+        linear-gradient(
+            145deg,
+            rgba(255, 255, 255, 0.075),
+            rgba(255, 255, 255, 0.025)
+        );
+
+    border-color:
+        rgba(255, 255, 255, 0.16);
+
+    box-shadow:
+        0 12px 35px rgba(0, 0, 0, 0.22),
+        inset 0 1px 0 rgba(255, 255, 255, 0.06);
+}
+
+
+/* Hover */
+
+.mini-card:hover,
+.concept-node:hover,
+.scenario-grid button:hover,
+.construct-block:hover,
+.tech-step:hover {
+    border-color:
+        rgba(80, 225, 255, 0.45);
+
+    box-shadow:
+        0 15px 40px rgba(0, 180, 255, 0.14),
+        inset 0 1px 0 rgba(255, 255, 255, 0.10);
+}
+
+
+/* Texnologik xarita */
+
+.map-header {
+    color: #8eeeff;
+}
+
+.map-row {
+    background:
+        rgba(255, 255, 255, 0.045);
+
+    border-color:
+        rgba(255, 255, 255, 0.12);
+}
+
+.map-row:hover,
+.map-row.opened {
+    background:
+        rgba(0, 200, 255, 0.09);
+
+    border-color:
+        rgba(0, 220, 255, 0.35);
+}
+
+
+/* Test javoblari */
+
+.answer {
+    background:
+        linear-gradient(
+            145deg,
+            rgba(255, 255, 255, 0.07),
+            rgba(255, 255, 255, 0.025)
+        );
+
+    border-color:
+        rgba(255, 255, 255, 0.15);
+
+    color: #f5f9ff;
+
+    box-shadow:
+        0 8px 25px rgba(0, 0, 0, 0.18);
+}
+
+.answer:hover {
+    background:
+        rgba(0, 210, 255, 0.10);
+
+    border-color:
+        rgba(80, 225, 255, 0.45);
+}
+
+.answer.selected {
+    background:
+        rgba(0, 210, 255, 0.14);
+
+    border-color:
+        rgba(80, 225, 255, 0.65);
+}
+
+
+/* Tugmalar */
+
+.nav-btn,
+button {
+    text-shadow:
+        0 0 8px rgba(255, 255, 255, 0.08);
+}
+
+
+/* Progress */
+
+#progressBar {
+    box-shadow:
+        0 0 15px rgba(0, 220, 255, 0.45);
+}
+
+
+/* Rasm */
+
+.technology-image-card {
+    box-shadow:
+        0 20px 50px rgba(0, 0, 0, 0.35),
+        0 0 45px rgba(0, 210, 255, 0.13) !important;
+}
+
+
+/* Final */
+
+.final-message {
+    text-shadow:
+        0 0 18px rgba(0, 220, 255, 0.18);
+}
