@@ -1,278 +1,76 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="uz">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>Ta'lim texnologiyalariga asoslangan dars rejasini tuzish</title>
-
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#08111f">
+  <title>Interaktiv dars — Ta'lim texnologiyalariga asoslangan dars rejasini tuzish</title>
+  <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
-
-    <!-- =========================
-         ASOSIY KONTEYNER
-    ========================== -->
-    <main id="app">
-
-        <!-- =========================
-             1. BOSH SAHIFA
-        ========================== -->
-        <section id="home" class="screen active">
-
-            <div class="home-content">
-
-                <div class="institution">
-                    <span>SHDPI</span>
-                    <p>Aniq fanlar oliy pedagogika maktabi</p>
-                    <p>Texnologik ta'lim kafedrasi</p>
-                    <p>TT 1/24 guruh</p>
-                </div>
-
-                <div class="main-title">
-
-                    <span class="label">INTERAKTIV DARS</span>
-
-                    <h1>
-                        TA'LIM TEXNOLOGIYALARIGA
-                        <br>
-                        ASOSLANGAN DARS REJASINI TUZISH
-                    </h1>
-
-                    <p class="subject">
-                        Metallar va metallmaslarga ishlov berishni
-                        o‘qitish metodikasi
-                    </p>
-
-                </div>
-
-                <div class="authors">
-                    <span>Mualliflar</span>
-
-                    <strong>Abdishukurov Parviz</strong>
-                    <strong>Ashirova Dilbar</strong>
-                </div>
-
-                <div class="home-buttons">
-
-                    <button
-                        class="btn btn-primary"
-                        onclick="startLesson()">
-                        📖 DARSNI BOSHLASH
-                    </button>
-
-                    <button
-                        class="btn btn-secondary"
-                        onclick="startTest()">
-                        ⚡ TESTGA O‘TISH
-                    </button>
-
-                </div>
-
-            </div>
-
-            <div class="decor decor-1"></div>
-            <div class="decor decor-2"></div>
-            <div class="grid-background"></div>
-
-        </section>
-
-
-        <!-- =========================
-             2. NAZARIY QISM
-        ========================== -->
-        <section id="lesson" class="screen">
-
-            <div class="lesson-header">
-
-                <span id="slideNumber">01 / 07</span>
-
-                <div class="progress">
-                    <div id="progressBar"></div>
-                </div>
-
-            </div>
-
-
-            <div class="slide-content">
-
-                <div class="slide-visual" id="slideVisual">
-                    <div class="visual-circle"></div>
-                </div>
-
-                <div class="slide-text">
-
-                    <span class="section-label">
-                        NAZARIY QISM
-                    </span>
-
-                    <h2 id="slideTitle">
-                        Kirish
-                    </h2>
-
-                    <div id="slideDescription">
-                        Ta'lim texnologiyalariga asoslangan
-                        dars rejasini tuzish.
-                    </div>
-
-                </div>
-
-            </div>
-
-
-            <div class="lesson-navigation">
-
-                <button
-                    class="nav-btn"
-                    onclick="previousSlide()">
-                    ← ORTGA
-                </button>
-
-                <button
-                    class="nav-btn next"
-                    onclick="nextSlide()">
-                    KEYINGI →
-                </button>
-
-            </div>
-
-        </section>
-
-
-        <!-- =========================
-             3. TEST QISMI
-        ========================== -->
-        <section id="test" class="screen">
-
-            <div class="test-header">
-
-                <div>
-                    <span class="section-label">
-                        MINI CHALLENGE
-                    </span>
-
-                    <h2 id="questionNumber">
-                        SAVOL 1 / 5
-                    </h2>
-                </div>
-
-                <div class="timer">
-                    <span>⏱</span>
-                    <strong id="timer">30</strong>
-                </div>
-
-            </div>
-
-
-            <div class="question-box">
-
-                <p id="questionText">
-                    Savol yuklanmoqda...
-                </p>
-
-            </div>
-
-
-            <div
-                id="answers"
-                class="answers">
-            </div>
-
-
-            <button
-                id="confirmButton"
-                class="btn btn-primary confirm-btn"
-                onclick="confirmAnswer()">
-                TASDIQLASH
-            </button>
-
-
-            <div
-                id="feedback"
-                class="feedback">
-            </div>
-
-        </section>
-
-
-        <!-- =========================
-             4. NATIJA
-        ========================== -->
-        <section id="result" class="screen">
-
-            <div class="result-content">
-
-                <span class="section-label">
-                    TEST YAKUNLANDI
-                </span>
-
-                <h1>🎯 NATIJA</h1>
-
-                <div class="score-circle">
-
-                    <strong id="score">
-                        0
-                    </strong>
-
-                    <span>BALL</span>
-
-                </div>
-
-                <p id="resultText">
-                    Natijangiz hisoblanmoqda...
-                </p>
-
-                <button
-                    class="btn btn-primary"
-                    onclick="showFinal()">
-                    DAVOM ETISH
-                </button>
-
-            </div>
-
-        </section>
-
-
-        <!-- =========================
-             5. YAKUNIY EKRAN
-        ========================== -->
-        <section id="final" class="screen">
-
-            <div class="final-content">
-
-                <div class="final-icon">
-                    ✓
-                </div>
-
-                <span class="section-label">
-                    DARS YAKUNI
-                </span>
-
-                <h1>
-                    E'TIBORINGIZ UCHUN
-                    <br>
-                    RAHMAT!
-                </h1>
-
-                <p>
-                    Bugungi dars yakunlandi.
-                </p>
-
-                <button
-                    class="btn btn-secondary"
-                    onclick="restartLesson()">
-                    ↻ QAYTA KO‘RISH
-                </button>
-
-            </div>
-
-        </section>
-
-    </main>
-
-
-    <script src="script.js"></script>
-
+<div class="app-shell">
+  <header class="topbar">
+    <div class="brand"><span class="brand-mark">S</span><div><strong>SHDPI</strong><small>Texnologik ta'lim kafedrasi</small></div></div>
+    <div class="group">TT 1/24 guruh</div>
+  </header>
+
+  <main>
+    <section id="home" class="screen active">
+      <div class="hero-grid">
+        <div class="hero-copy">
+          <div class="eyebrow">INTERAKTIV DARS · 01</div>
+          <h1>Ta'lim texnologiyalariga asoslangan <span>dars rejasini tuzish</span></h1>
+          <p class="subject">Metallar va metallmaslarga ishlov berishni o‘qitish metodikasi</p>
+          <div class="authors"><span>Mualliflar</span><strong>Abdishukurov Parviz · Ashirova Dilbar</strong></div>
+          <div class="home-actions">
+            <button class="btn btn-primary" id="startLessonBtn">📖 DARSNI BOSHLASH</button>
+            <button class="btn btn-secondary" id="startTestBtn">⚡ TESTGA O‘TISH</button>
+          </div>
+          <div class="features"><span>7 ta nazariy blok</span><span>10 ta test savoli</span><span>30 soniyalik taymer</span></div>
+        </div>
+        <div class="hero-visual">
+          <div class="visual-glow"></div>
+          <img src="images/interaktiv-dars.jpg" alt="Interaktiv dars">
+          <div class="visual-card"><small>O‘QUV MODELI</small><b>MAQSAD → JARAYON → NATIJA</b></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="lesson" class="screen">
+      <div class="lesson-head"><div><div class="eyebrow">NAZARIY QISM</div><h2 id="slideTitle">Kirish</h2></div><div class="slide-count" id="slideCount">01 / 07</div></div>
+      <div class="progress"><i id="lessonProgress"></i></div>
+      <div class="lesson-layout">
+        <article class="lesson-card">
+          <div class="slide-meta" id="slideLabel">KIRISH</div>
+          <p id="slideText"></p>
+          <div id="slideActions" class="action-grid"></div>
+          <div id="slideInfo" class="info-panel hidden"></div>
+        </article>
+        <aside class="lesson-side">
+          <div class="side-number" id="sideNumber">01</div>
+          <div class="side-line"></div>
+          <div class="side-note">Interaktiv blok</div>
+        </aside>
+      </div>
+      <div class="nav-row"><button class="btn btn-ghost" id="prevBtn">← ORTGA</button><button class="btn btn-primary" id="nextBtn">KEYINGI →</button></div>
+    </section>
+
+    <section id="test" class="screen">
+      <div class="test-top"><div><div class="eyebrow">MINI CHALLENGE</div><h2>Savol <span id="questionNo">1</span> / 10</h2></div><div class="timer" id="timer">30</div></div>
+      <div class="progress"><i id="testProgress"></i></div>
+      <article class="question-card">
+        <div class="difficulty" id="difficulty">OSON</div>
+        <h3 id="questionText">Savol yuklanmoqda...</h3>
+        <div id="answers" class="answers"></div>
+        <div class="test-actions"><span id="answerState">Variantni tanlang</span><button class="btn btn-primary" id="confirmBtn" disabled>TASDIQLASH</button></div>
+      </article>
+    </section>
+
+    <section id="result" class="screen">
+      <div class="result-card"><div class="result-icon">✓</div><div class="eyebrow">TEST YAKUNLANDI</div><h2>Natija</h2><div class="score" id="score">0%</div><p id="resultText">Natijangiz hisoblanmoqda...</p><div class="result-stats"><div><b id="correctCount">0</b><span>To‘g‘ri</span></div><div><b id="wrongCount">0</b><span>Xato</span></div><div><b id="resultTotal">10</b><span>Jami</span></div></div><div class="result-actions"><button class="btn btn-primary" id="retryBtn">↻ QAYTA ISHLASH</button><button class="btn btn-secondary" id="homeBtn">⌂ BOSH SAHIFA</button></div></div>
+    </section>
+  </main>
+</div>
+<script src="script.js"></script>
 </body>
 </html>
