@@ -21,4 +21,15 @@ function confirmAnswer(timeout=false){if(!selected&&!timeout)return;clearInterva
 function showResult(){showScreen('result');const total=questions.length,wrong=total-correct,percent=Math.round(correct/total*100);$('#score').textContent=percent+'%';$('.score-ring').style.setProperty('--score',percent+'%');$('#correctCount').textContent=correct;$('#wrongCount').textContent=wrong;$('#resultTotal').textContent=total;$('#resultText').textContent=percent>=80?'🎉 Juda yaxshi! Asosiy tushunchalar va ularning o‘zaro bog‘liqligi yaxshi o‘zlashtirilgan.':percent>=60?'👍 Asosiy tushunchalar o‘zlashtirilgan. Ayrim bloklarni yana bir marta ko‘rib chiqish foydali.':'📚 Nazariy bloklarni qayta ko‘rib, testni yana bir bor ishlash tavsiya etiladi.';if(percent>=80)confetti()}
 function confetti(){for(let i=0;i<65;i++){const c=document.createElement('i');c.className='confetti';c.style.left='50vw';c.style.top='35vh';c.style.background=['#46ddff','#9b7bff','#46e3a2','#ffd166','#ff627c'][i%5];c.style.setProperty('--x',((Math.random()-.5)*95)+'vw');c.style.setProperty('--y',(35+Math.random()*55)+'vh');c.style.animationDelay=(Math.random()*.25)+'s';document.body.appendChild(c);setTimeout(()=>c.remove(),2200)}}
 function makeParticles(){const box=$('#particles');for(let i=0;i<35;i++){const p=document.createElement('i');p.className='particle';p.style.left=Math.random()*100+'%';p.style.animationDelay=(-Math.random()*20)+'s';p.style.animationDuration=(10+Math.random()*15)+'s';box.appendChild(p)}}
-$('#startLessonBtn').onclick=startLesson;$('#startTestBtn').onclick=startTest;$('#nextBtn').onclick=nextSlide;$('#prevBtn').onclick=prevSlide;$('#confirmBtn').onclick=()=>confirmAnswer(false);$('#retryBtn').onclick=startTest;$('#homeBtn').onclick=()=>showScreen('home');renderSlide();makeParticles();
+document.addEventListener('DOMContentLoaded',()=>{
+  const bind=(id,fn)=>{const el=document.getElementById(id);if(el)el.addEventListener('click',fn)};
+  bind('startLessonBtn',startLesson);
+  bind('startTestBtn',startTest);
+  bind('nextBtn',nextSlide);
+  bind('prevBtn',prevSlide);
+  bind('confirmBtn',()=>confirmAnswer(false));
+  bind('retryBtn',startTest);
+  bind('homeBtn',()=>showScreen('home'));
+  renderSlide();
+  makeParticles();
+});
