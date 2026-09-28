@@ -2747,3 +2747,232 @@ button {
 .final-flow button:focus {
     outline: none;
 }
+
+/* =========================================================
+   PROFESSIONAL INTERAKTIV SLAYDLAR — 4–7
+   ========================================================= */
+
+/* ---------- 4-SLAYD: DARS KONSTRUKTORI ---------- */
+
+.construct-block {
+    position: relative;
+    cursor: pointer;
+    transition:
+        transform 0.25s ease,
+        border-color 0.25s ease,
+        background 0.25s ease,
+        box-shadow 0.25s ease;
+}
+
+.construct-block:hover {
+    transform: translateY(-6px);
+    border-color: rgba(80, 225, 255, 0.65);
+    background: rgba(0, 210, 255, 0.10);
+    box-shadow:
+        0 12px 30px rgba(0, 210, 255, 0.15),
+        inset 0 0 20px rgba(0, 210, 255, 0.04);
+}
+
+.construct-block:active {
+    transform: translateY(-2px) scale(0.98);
+}
+
+.construct-block.selected {
+    border-color: rgba(80, 225, 255, 0.85);
+    background: rgba(0, 210, 255, 0.14);
+    box-shadow:
+        0 0 25px rgba(0, 210, 255, 0.18),
+        inset 0 0 18px rgba(0, 210, 255, 0.05);
+}
+
+.constructor-bottom button {
+    cursor: pointer;
+    transition:
+        transform 0.2s ease,
+        background 0.2s ease,
+        border-color 0.2s ease;
+}
+
+.constructor-bottom button:hover {
+    transform: translateY(-3px);
+    border-color: rgba(80, 225, 255, 0.55);
+    background: rgba(0, 210, 255, 0.10);
+}
+
+
+/* ---------- 5-SLAYD: DARS XARITASI ---------- */
+
+.map-row {
+    width: 100%;
+    cursor: pointer;
+    text-align: left;
+    transition:
+        transform 0.22s ease,
+        background 0.22s ease,
+        border-color 0.22s ease,
+        box-shadow 0.22s ease;
+}
+
+.map-row:hover {
+    transform: translateX(6px);
+    background: rgba(0, 210, 255, 0.08);
+    border-color: rgba(80, 225, 255, 0.45);
+}
+
+.map-row:active {
+    transform: translateX(3px) scale(0.995);
+}
+
+.map-row.opened {
+    background: rgba(0, 210, 255, 0.12);
+    border-color: rgba(80, 225, 255, 0.70);
+    box-shadow:
+        0 8px 25px rgba(0, 180, 255, 0.10);
+}
+
+
+/* ---------- 6-SLAYD: TEXNOLOGIYA ---------- */
+
+.tech-step {
+    cursor: pointer;
+    transition:
+        transform 0.25s ease,
+        background 0.25s ease,
+        border-color 0.25s ease,
+        box-shadow 0.25s ease;
+}
+
+.tech-step:hover {
+    transform: translateY(-5px) scale(1.02);
+    background: rgba(0, 210, 255, 0.09);
+    border-color: rgba(80, 225, 255, 0.50);
+    box-shadow:
+        0 12px 30px rgba(0, 180, 255, 0.12);
+}
+
+.tech-step:active {
+    transform: translateY(-2px) scale(0.99);
+}
+
+.tech-step.selected {
+    background: rgba(0, 210, 255, 0.14);
+    border-color: rgba(80, 225, 255, 0.75);
+    box-shadow:
+        0 0 28px rgba(0, 210, 255, 0.18);
+}
+
+
+/* ---------- 7-SLAYD: DARSNI YIG‘ISH ---------- */
+
+/*
+   Muhim:
+   Eski CSS .final-flow > div bilan yozilgan bo‘lsa,
+   bu yerda aynan BUTTON uchun dizayn beramiz.
+*/
+
+.final-flow > button {
+    min-width: 130px;
+    min-height: 95px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+
+    padding: 14px 18px;
+
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 18px;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(255, 255, 255, 0.08),
+            rgba(255, 255, 255, 0.025)
+        );
+
+    color: #f5f9ff;
+
+    cursor: pointer;
+
+    transition:
+        transform 0.25s ease,
+        background 0.25s ease,
+        border-color 0.25s ease,
+        box-shadow 0.25s ease;
+}
+
+.final-flow > button:hover {
+    transform: translateY(-6px);
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(0, 210, 255, 0.13),
+            rgba(0, 210, 255, 0.04)
+        );
+
+    border-color: rgba(80, 225, 255, 0.60);
+
+    box-shadow:
+        0 14px 35px rgba(0, 180, 255, 0.15);
+}
+
+.final-flow > button:active {
+    transform: translateY(-2px) scale(0.98);
+}
+
+.final-flow > button.selected {
+    background:
+        linear-gradient(
+            145deg,
+            rgba(0, 210, 255, 0.18),
+            rgba(0, 210, 255, 0.06)
+        );
+
+    border-color: rgba(80, 225, 255, 0.85);
+
+    box-shadow:
+        0 0 28px rgba(0, 210, 255, 0.18),
+        inset 0 0 20px rgba(0, 210, 255, 0.05);
+}
+
+.final-flow > button:first-child {
+    animation-delay: 0.1s;
+}
+
+.final-flow > button span {
+    font-size: 0.85rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+}
+
+.final-flow > i {
+    color: rgba(120, 235, 255, 0.70);
+    font-size: 1.5rem;
+    transition: transform 0.25s ease;
+}
+
+.final-flow > button:hover + i {
+    transform: translateX(4px);
+}
+
+
+/* ---------- BARCHA INTERAKTIV ELEMENTLAR ---------- */
+
+.construct-block:focus,
+.constructor-bottom button:focus,
+.map-row:focus,
+.tech-step:focus,
+.final-flow > button:focus {
+    outline: none;
+}
+
+.construct-block,
+.constructor-bottom button,
+.map-row,
+.tech-step,
+.final-flow > button {
+    -webkit-tap-highlight-color: transparent;
+}
