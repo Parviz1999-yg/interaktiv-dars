@@ -1,7 +1,6 @@
 /* =========================================================
    INTERAKTIV DARS
-   Mavzu:
-   "Ta’lim texnologiyalariga asoslangan dars rejasini tuzish"
+   Ta’lim texnologiyalariga asoslangan dars rejasini tuzish
    ========================================================= */
 
 
@@ -10,45 +9,81 @@
    ========================================================= */
 
 let currentSlide = 0;
+
 let currentQuestion = 0;
+
 let score = 0;
+
 let selectedAnswer = null;
 
 let timerInterval = null;
+
 let timeLeft = 30;
 
 let testQuestions = [];
 
 
 /* =========================================================
-   2. 7-SLAYD UCHUN DARS LOYIHASI
-   ========================================================= */
-
-let lessonBuilder = {
-    Maqsad: false,
-    Metod: false,
-    Amaliyot: false,
-    Baholash: false
-};
-
-
-/* =========================================================
-   3. YORDAMCHI FUNKSIYA
+   2. YORDAMCHI FUNKSIYA
    ========================================================= */
 
 function shuffleArray(array) {
+
     const newArray = [...array];
 
     for (let i = newArray.length - 1; i > 0; i--) {
-        const j = Math.floor(Math.random() * (i + 1));
 
-        [newArray[i], newArray[j]] = [
-            newArray[j],
-            newArray[i]
-        ];
+        const j = Math.floor(
+            Math.random() * (i + 1)
+        );
+
+        [newArray[i], newArray[j]] =
+        [newArray[j], newArray[i]];
     }
 
     return newArray;
+}
+
+
+/* =========================================================
+   3. EKRANLARNI BOSHQARISH
+   MUHIM: hidden orqali almashtiriladi
+   ========================================================= */
+
+function showScreen(screenId) {
+
+    const screens =
+        document.querySelectorAll(".screen");
+
+    screens.forEach(screen => {
+
+        screen.classList.remove("active");
+
+        screen.hidden = true;
+
+    });
+
+
+    const target =
+        document.getElementById(screenId);
+
+    if (!target) return;
+
+
+    target.hidden = false;
+
+    target.classList.add("active");
+
+
+    /*
+     * Sahifa pastiga tushib qolmasligi uchun
+     * har bir yangi ekran ochilganda yuqoriga qaytamiz.
+     */
+
+    window.scrollTo({
+        top: 0,
+        behavior: "instant"
+    });
 }
 
 
@@ -114,7 +149,6 @@ const slides = [
 
                 </div>
 
-
                 <div class="lesson-flow">
 
                     <div class="flow-person teacher">
@@ -127,29 +161,27 @@ const slides = [
 
                     </div>
 
-
                     <div class="flow-arrow">
                         <span></span>
                     </div>
 
-
                     <div class="flow-center">
 
                         <div class="center-ring">
+
                             <div class="center-core">
                                 DARS
                             </div>
+
                         </div>
 
                         <small>LOYIHA</small>
 
                     </div>
 
-
                     <div class="flow-arrow">
                         <span></span>
                     </div>
-
 
                     <div class="flow-person student">
 
@@ -162,7 +194,6 @@ const slides = [
                     </div>
 
                 </div>
-
 
                 <div class="visual-bottom">
 
@@ -181,6 +212,21 @@ const slides = [
                         <span>Natija</span>
                     </div>
 
+                </div>
+
+                <button
+                    type="button"
+                    class="slide-info-button"
+                    onclick="showSlideInfo('problem')"
+                >
+                    💡 NIMA UCHUN MUHIM?
+                </button>
+
+                <div
+                    id="slideInfo"
+                    class="method-result"
+                >
+                    Tugmani bosing →
                 </div>
 
             </div>
@@ -223,7 +269,6 @@ const slides = [
 
                 </div>
 
-
                 <button
                     type="button"
                     class="concept-node node-top"
@@ -232,7 +277,6 @@ const slides = [
                     🎯
                     <span>MAQSAD</span>
                 </button>
-
 
                 <button
                     type="button"
@@ -243,7 +287,6 @@ const slides = [
                     <span>JARAYON</span>
                 </button>
 
-
                 <button
                     type="button"
                     class="concept-node node-right"
@@ -253,8 +296,10 @@ const slides = [
                     <span>NATIJA</span>
                 </button>
 
-
-                <div id="conceptInfo" class="concept-info">
+                <div
+                    id="conceptInfo"
+                    class="concept-info"
+                >
                     Elementlardan birini tanlang
                 </div>
 
@@ -292,7 +337,6 @@ const slides = [
                     VAZIYATNI TANLANG
                 </div>
 
-
                 <div class="scenario-grid">
 
                     <button
@@ -304,7 +348,6 @@ const slides = [
                         <small>O‘quvchi yechim izlaydi</small>
                     </button>
 
-
                     <button
                         type="button"
                         onclick="selectMethod('Hamkorlikdagi ta’lim')"
@@ -314,7 +357,6 @@ const slides = [
                         <small>Birgalikda faoliyat</small>
                     </button>
 
-
                     <button
                         type="button"
                         onclick="selectMethod('Loyihaviy ta’lim')"
@@ -323,7 +365,6 @@ const slides = [
                         <b>Loyiha yaratish</b>
                         <small>Amaliy mahsulot</small>
                     </button>
-
 
                     <button
                         type="button"
@@ -336,8 +377,10 @@ const slides = [
 
                 </div>
 
-
-                <div id="methodResult" class="method-result">
+                <div
+                    id="methodResult"
+                    class="method-result"
+                >
                     Vaziyatni tanlang
                 </div>
 
@@ -373,14 +416,12 @@ const slides = [
             <div class="constructor-visual">
 
                 <div class="constructor-label">
-                    DARSNI O‘ZINGIZ QURING
+                    DARSNI O‘RGANING
                 </div>
-
 
                 <p style="text-align:center;margin-bottom:20px;opacity:.75;">
                     Bosqichlardan birini tanlang
                 </p>
-
 
                 <div class="constructor-track">
 
@@ -394,9 +435,7 @@ const slides = [
                         <span>MAQSAD</span>
                     </button>
 
-
                     <div class="construct-line"></div>
-
 
                     <button
                         type="button"
@@ -408,9 +447,7 @@ const slides = [
                         <span>MAZMUN</span>
                     </button>
 
-
                     <div class="construct-line"></div>
-
 
                     <button
                         type="button"
@@ -422,9 +459,7 @@ const slides = [
                         <span>METOD</span>
                     </button>
 
-
                     <div class="construct-line"></div>
-
 
                     <button
                         type="button"
@@ -438,14 +473,12 @@ const slides = [
 
                 </div>
 
-
                 <div
                     id="lessonPartInfo"
                     class="method-result"
                 >
                     Bosqichni tanlang →
                 </div>
-
 
                 <div class="constructor-bottom">
 
@@ -456,14 +489,12 @@ const slides = [
                         TOPSHIRIQ
                     </button>
 
-
                     <button
                         type="button"
                         onclick="showLessonPart('Baholash')"
                     >
                         BAHOLASH
                     </button>
-
 
                     <strong>
                         → DARS NATIJASI
@@ -507,7 +538,6 @@ const slides = [
                     <span>O‘QUVCHI</span>
                 </div>
 
-
                 <button
                     type="button"
                     class="map-row"
@@ -518,7 +548,6 @@ const slides = [
                     <span>Motivatsiya beradi</span>
                     <span>Faol qatnashadi</span>
                 </button>
-
 
                 <button
                     type="button"
@@ -531,7 +560,6 @@ const slides = [
                     <span>Tahlil qiladi</span>
                 </button>
 
-
                 <button
                     type="button"
                     class="map-row"
@@ -543,7 +571,6 @@ const slides = [
                     <span>Bajaradi</span>
                 </button>
 
-
                 <button
                     type="button"
                     class="map-row"
@@ -554,7 +581,6 @@ const slides = [
                     <span>Baholaydi</span>
                     <span>Natijasini ko‘rsatadi</span>
                 </button>
-
 
                 <div
                     id="mapInfo"
@@ -616,7 +642,6 @@ const slides = [
                         "
                     >
 
-
                     <div
                         style="
                             position:absolute;
@@ -643,7 +668,6 @@ const slides = [
 
                 </div>
 
-
                 <div class="material-orbit">
 
                     <button
@@ -655,7 +679,6 @@ const slides = [
                         <span>NAZARIYA</span>
                     </button>
 
-
                     <button
                         type="button"
                         class="tech-step"
@@ -665,7 +688,6 @@ const slides = [
                         <span>NAMOYISH</span>
                     </button>
 
-
                     <button
                         type="button"
                         class="tech-step"
@@ -674,7 +696,6 @@ const slides = [
                         <b>03</b>
                         <span>AMALIY ISH</span>
                     </button>
-
 
                     <button
                         type="button"
@@ -687,28 +708,11 @@ const slides = [
 
                 </div>
 
-
                 <div
                     id="techStepInfo"
                     class="method-result"
                 >
                     Bosqichni tanlang →
-                </div>
-
-
-                <div class="tech-process">
-
-                    <div>NAZARIYA</div>
-                    <i>→</i>
-
-                    <div>NAMOYISH</div>
-                    <i>→</i>
-
-                    <div>AMALIY ISH</div>
-                    <i>→</i>
-
-                    <div>NAZORAT</div>
-
                 </div>
 
             </div>
@@ -736,7 +740,6 @@ const slides = [
                 amaliy topshiriq va baholash.
             </p>
 
-
             <div class="final-message">
                 <strong>
                     DARS REJASI = MAQSAD + JARAYON + NATIJA
@@ -748,9 +751,8 @@ const slides = [
             <div class="final-visual">
 
                 <div class="final-title">
-                    DARS LOYIHASINI YIG‘ING
+                    DARS LOYIHASINI KO‘RING
                 </div>
-
 
                 <p
                     style="
@@ -759,51 +761,44 @@ const slides = [
                         margin-bottom:25px;
                     "
                 >
-                    4 ta elementni tanlang
+                    Elementlardan birini tanlang
                 </p>
-
 
                 <div class="final-flow">
 
                     <button
                         type="button"
-                        onclick="buildLesson('Maqsad')"
+                        onclick="showFinalPart('Maqsad')"
                     >
                         🎯
                         <span>MAQSAD</span>
                     </button>
 
-
                     <i>→</i>
-
 
                     <button
                         type="button"
-                        onclick="buildLesson('Metod')"
+                        onclick="showFinalPart('Metod')"
                     >
                         ⚙
                         <span>METOD</span>
                     </button>
 
-
                     <i>→</i>
-
 
                     <button
                         type="button"
-                        onclick="buildLesson('Amaliyot')"
+                        onclick="showFinalPart('Amaliyot')"
                     >
                         🛠
                         <span>AMALIYOT</span>
                     </button>
 
-
                     <i>→</i>
-
 
                     <button
                         type="button"
-                        onclick="buildLesson('Baholash')"
+                        onclick="showFinalPart('Baholash')"
                     >
                         ✓
                         <span>BAHOLASH</span>
@@ -811,28 +806,20 @@ const slides = [
 
                 </div>
 
-
                 <div
-                    id="lessonBuilder"
+                    id="finalPartInfo"
                     class="ready-box"
                 >
                     <span>?</span>
 
                     <strong>
-                        DARS LOYIHASI
+                        ELEMENTNI TANLANG
                     </strong>
 
                     <small>
-                        Yuqoridagi bosqichlarni tanlang
+                        Bosqichlardan birini bosing
                     </small>
                 </div>
-
-
-                <div
-                    id="lessonBuilderMessage"
-                    class="final-message"
-                ></div>
-
 
                 <button
                     type="button"
@@ -855,10 +842,6 @@ const slides = [
    ========================================================= */
 
 const questionBank = [
-
-    /* -----------------------------------------------------
-       OSON
-       ----------------------------------------------------- */
 
     {
         difficulty: "easy",
@@ -980,11 +963,6 @@ const questionBank = [
         correct: 0
     },
 
-
-    /* -----------------------------------------------------
-       O‘RTA
-       ----------------------------------------------------- */
-
     {
         difficulty: "medium",
         question: "Dars loyihalashning mantiqiy ketma-ketligi qaysi?",
@@ -1104,11 +1082,6 @@ const questionBank = [
         ],
         correct: 0
     },
-
-
-    /* -----------------------------------------------------
-       QIYIN
-       ----------------------------------------------------- */
 
     {
         difficulty: "hard",
@@ -1234,41 +1207,49 @@ const questionBank = [
 
 
 /* =========================================================
-   6. TEST SAVOLLARINI TANLASH
+   6. TESTNI SHAKLLANTIRISH
    ========================================================= */
 
 function createTestQuestions() {
 
-    const easy = shuffleArray(
-        questionBank.filter(q => q.difficulty === "easy")
-    ).slice(0, 3);
+    const easy =
+        shuffleArray(
+            questionBank.filter(
+                q => q.difficulty === "easy"
+            )
+        ).slice(0, 3);
 
 
-    const medium = shuffleArray(
-        questionBank.filter(q => q.difficulty === "medium")
-    ).slice(0, 4);
+    const medium =
+        shuffleArray(
+            questionBank.filter(
+                q => q.difficulty === "medium"
+            )
+        ).slice(0, 4);
 
 
-    const hard = shuffleArray(
-        questionBank.filter(q => q.difficulty === "hard")
-    ).slice(0, 3);
+    const hard =
+        shuffleArray(
+            questionBank.filter(
+                q => q.difficulty === "hard"
+            )
+        ).slice(0, 3);
 
 
-    const selected = [
+    return shuffleArray([
         ...easy,
         ...medium,
         ...hard
-    ];
+    ]).map(question => {
 
-
-    return shuffleArray(selected).map(question => {
-
-        const answers = question.answers.map(
-            (answer, index) => ({
-                text: answer,
-                correct: index === question.correct
-            })
-        );
+        const answers =
+            question.answers.map(
+                (answer, index) => ({
+                    text: answer,
+                    correct:
+                        index === question.correct
+                })
+            );
 
 
         return {
@@ -1281,61 +1262,62 @@ function createTestQuestions() {
 
 
 /* =========================================================
-   7. SLAYDNI KO‘RSATISH
+   7. SLAYDNI CHIQARISH
    ========================================================= */
 
 function renderSlide() {
 
-    const slide = slides[currentSlide];
+    const slide =
+        slides[currentSlide];
 
     if (!slide) return;
 
 
-    const titleElement =
+    const title =
         document.getElementById("slideTitle");
 
-    const descriptionElement =
-        document.getElementById("slideDescription");
+    const description =
+        document.getElementById(
+            "slideDescription"
+        );
 
-    const visualElement =
-        document.getElementById("slideVisual");
+    const visual =
+        document.getElementById(
+            "slideVisual"
+        );
 
 
-    if (titleElement) {
-        titleElement.textContent = slide.title;
+    if (title) {
+        title.textContent =
+            slide.title;
     }
 
 
-    if (descriptionElement) {
-        descriptionElement.innerHTML =
+    if (description) {
+        description.innerHTML =
             slide.description;
     }
 
 
-    if (visualElement) {
-        visualElement.innerHTML =
+    if (visual) {
+        visual.innerHTML =
             slide.visual;
     }
 
 
-    const labels =
-        document.querySelectorAll(".section-label");
+    document
+        .querySelectorAll(".section-label")
+        .forEach(label => {
 
+            label.textContent =
+                slide.label;
 
-    labels.forEach(label => {
-        label.textContent = slide.label;
-    });
+        });
 
 
     updateProgress();
 
-
     updateNavigation();
-
-
-    if (slide.type === "final") {
-        updateLessonBuilder();
-    }
 }
 
 
@@ -1345,53 +1327,57 @@ function renderSlide() {
 
 function updateProgress() {
 
-    const progressBar =
-        document.getElementById("progressBar");
+    const progress =
+        document.getElementById(
+            "progressBar"
+        );
 
-    if (!progressBar) return;
+    if (!progress) return;
 
 
     const percent =
-        ((currentSlide + 1) / slides.length) * 100;
+        ((currentSlide + 1) /
+            slides.length) * 100;
 
 
-    progressBar.style.width =
-        percent + "%";
+    progress.style.width =
+        `${percent}%`;
 }
 
 
 /* =========================================================
-   9. NAVIGATSIYA
+   9. SLAYD NAVIGATSIYASI
    ========================================================= */
 
 function updateNavigation() {
 
-    const prevButton =
-        document.getElementById("prevBtn");
+    const prev =
+        document.getElementById(
+            "prevBtn"
+        );
 
-    const nextButton =
-        document.getElementById("nextBtn");
+    const next =
+        document.getElementById(
+            "nextBtn"
+        );
 
 
-    if (prevButton) {
-        prevButton.disabled =
+    if (prev) {
+
+        prev.disabled =
             currentSlide === 0;
+
     }
 
 
-    if (nextButton) {
+    if (next) {
 
-        if (currentSlide === slides.length - 1) {
+        next.textContent =
+            currentSlide ===
+            slides.length - 1
+                ? "⚡ TESTGA O‘TISH"
+                : "KEYINGI →";
 
-            nextButton.textContent =
-                "⚡ TESTGA O‘TISH";
-
-        } else {
-
-            nextButton.textContent =
-                "KEYINGI →";
-
-        }
     }
 }
 
@@ -1405,29 +1391,10 @@ function startLesson() {
     currentSlide = 0;
 
 
-    lessonBuilder = {
-        Maqsad: false,
-        Metod: false,
-        Amaliyot: false,
-        Baholash: false
-    };
+    clearInterval(timerInterval);
 
 
-    const startScreen =
-        document.getElementById("startScreen");
-
-    const lessonScreen =
-        document.getElementById("lesson");
-
-
-    if (startScreen) {
-        startScreen.classList.remove("active");
-    }
-
-
-    if (lessonScreen) {
-        lessonScreen.classList.add("active");
-    }
+    showScreen("lesson");
 
 
     renderSlide();
@@ -1435,28 +1402,30 @@ function startLesson() {
 
 
 /* =========================================================
-   11. KEYINGI SLAYD
+   11. KEYINGI
    ========================================================= */
 
 function nextSlide() {
 
-    if (currentSlide <
-        slides.length - 1) {
+    if (
+        currentSlide <
+        slides.length - 1
+    ) {
 
         currentSlide++;
 
         renderSlide();
 
-    } else {
-
-        startTest();
-
+        return;
     }
+
+
+    startTest();
 }
 
 
 /* =========================================================
-   12. OLDINGI SLAYD
+   12. OLDINGI
    ========================================================= */
 
 function previousSlide() {
@@ -1472,42 +1441,81 @@ function previousSlide() {
 
 
 /* =========================================================
-   13. 2-SLAYD — KONSEPT
+   13. 1-SLAYD IZOH
+   ========================================================= */
+
+function showSlideInfo(type) {
+
+    const box =
+        document.getElementById(
+            "slideInfo"
+        );
+
+    if (!box) return;
+
+
+    if (type === "problem") {
+
+        box.innerHTML = `
+            <strong>💡 NIMA UCHUN MUHIM?</strong>
+
+            <p>
+                Dars oldindan loyihalansa, o‘qituvchi
+                maqsad, faoliyat va kutilayotgan natijani
+                bir-biri bilan bog‘lay oladi.
+                Bu o‘quvchining bilimni amalda qo‘llashiga
+                yordam beradi.
+            </p>
+        `;
+
+    }
+
+    animateInfo(box);
+}
+
+
+/* =========================================================
+   14. 2-SLAYD
    ========================================================= */
 
 function showConceptInfo(type) {
 
     const box =
-        document.getElementById("conceptInfo");
+        document.getElementById(
+            "conceptInfo"
+        );
 
     if (!box) return;
 
 
     const information = {
 
-        "Maqsad": `
+        Maqsad: `
             <strong>🎯 MAQSAD</strong>
+
             <p>
-                Dars yakunida o‘quvchi qanday bilim,
-                ko‘nikma yoki malakaga ega bo‘lishi
-                kerakligi belgilanadi.
+                Dars yakunida o‘quvchi egallashi kerak
+                bo‘lgan bilim, ko‘nikma yoki malaka
+                aniq belgilanadi.
             </p>
         `,
 
-        "Jarayon": `
+        Jarayon: `
             <strong>⚙ JARAYON</strong>
+
             <p>
                 Belgilangan maqsadga erishish uchun
                 o‘qituvchi va o‘quvchi faoliyati
-                qanday tashkil etilishini anglatadi.
+                qanday tashkil etilishi belgilanadi.
             </p>
         `,
 
-        "Natija": `
+        Natija: `
             <strong>✓ NATIJA</strong>
+
             <p>
-                Dars yakunida o‘quvchida shakllangan
-                bilim, ko‘nikma va malakalar aniqlanadi.
+                Dars oxirida o‘quvchida shakllangan
+                bilim va ko‘nikmalar aniqlanadi.
             </p>
         `
 
@@ -1518,24 +1526,20 @@ function showConceptInfo(type) {
         information[type] || "";
 
 
-    box.classList.remove("selected");
-
-
-    void box.offsetWidth;
-
-
-    box.classList.add("selected");
+    animateInfo(box);
 }
 
 
 /* =========================================================
-   14. 3-SLAYD — METOD
+   15. 3-SLAYD
    ========================================================= */
 
 function selectMethod(method) {
 
     const box =
-        document.getElementById("methodResult");
+        document.getElementById(
+            "methodResult"
+        );
 
     if (!box) return;
 
@@ -1544,32 +1548,34 @@ function selectMethod(method) {
 
         "Muammoli ta’lim": `
             <strong>❓ MUAMMOLI TA’LIM</strong>
+
             <p>
-                O‘quvchiga muammoli vaziyat beriladi.
-                U vaziyatni tahlil qiladi va mustaqil
-                ravishda yechim izlaydi.
+                O‘quvchi muammoli vaziyatni tahlil qiladi
+                va mustaqil ravishda yechim izlaydi.
             </p>
         `,
 
         "Hamkorlikdagi ta’lim": `
             <strong>👥 HAMKORLIKDAGI TA’LIM</strong>
+
             <p>
-                O‘quvchilar guruh yoki juftliklarda
-                hamkorlikda topshiriqni bajaradilar.
+                O‘quvchilar juftlik yoki guruhda
+                birgalikda topshiriq bajaradilar.
             </p>
         `,
 
         "Loyihaviy ta’lim": `
             <strong>◈ LOYIHAVIY TA’LIM</strong>
+
             <p>
-                O‘quvchi ma’lum bir muammoni hal qilish
-                yoki amaliy mahsulot yaratish orqali
-                bilim oladi.
+                O‘quvchi muammoni hal qilish yoki
+                amaliy mahsulot yaratish orqali o‘rganadi.
             </p>
         `,
 
         "Amaliy ta’lim": `
             <strong>⚙ AMALIY TA’LIM</strong>
+
             <p>
                 Nazariy bilim bevosita amaliy harakat
                 orqali mustahkamlanadi.
@@ -1583,75 +1589,67 @@ function selectMethod(method) {
         information[method] || "";
 
 
-    box.classList.remove("selected");
-
-
-    void box.offsetWidth;
-
-
-    box.classList.add("selected");
+    animateInfo(box);
 }
 
 
 /* =========================================================
-   15. 4-SLAYD — DARS KONSTRUKTORI
+   16. 4-SLAYD
    ========================================================= */
 
 function showLessonPart(type) {
 
     const box =
-        document.getElementById("lessonPartInfo");
+        document.getElementById(
+            "lessonPartInfo"
+        );
 
     if (!box) return;
 
 
     const information = {
 
-        "Maqsad": `
+        Maqsad: `
             <strong>🎯 MAQSAD</strong>
             <p>
-                Dars yakunida o‘quvchi qanday bilim,
-                ko‘nikma yoki malakaga ega bo‘lishi
-                kerakligi belgilanadi.
+                Dars yakunida qanday natijaga
+                erishilishi belgilanadi.
             </p>
         `,
 
-        "Mazmun": `
+        Mazmun: `
             <strong>📚 MAZMUN</strong>
             <p>
-                O‘quvchiga beriladigan bilimlar,
-                tushunchalar va amaliy materiallar
-                mazmunini belgilaydi.
+                O‘quvchiga beriladigan bilim,
+                tushuncha va materiallar belgilanadi.
             </p>
         `,
 
-        "Metod": `
+        Metod: `
             <strong>⚙ METOD</strong>
             <p>
-                Belgilangan maqsadga erishish uchun
-                qanday o‘qitish usulidan foydalanish
-                aniqlanadi.
+                Maqsadga erishish uchun mos
+                o‘qitish usuli tanlanadi.
             </p>
         `,
 
-        "Vosita": `
+        Vosita: `
             <strong>🛠 VOSITA</strong>
             <p>
-                Darsni tashkil etishda foydalaniladigan
-                asbob-uskunalar, texnika, materiallar
+                Asbob-uskunalar, texnika, materiallar
                 va didaktik vositalar tanlanadi.
             </p>
         `,
 
-        "Topshiriq": `
+        Topshiriq: `
             <strong>📋 TOPSHIRIQ</strong>
             <p>
-                O‘quvchi o‘zlashtirgan bilimini amalda
-                qo‘llashi uchun aniq vazifa beriladi.
+                O‘quvchi bilimini amalda qo‘llashi
+                uchun aniq vazifa beriladi.
             </p>
         `,
 
-        "Baholash": `
+        Baholash: `
             <strong>✓ BAHOLASH</strong>
             <p>
                 O‘quvchining belgilangan maqsadga
@@ -1666,18 +1664,12 @@ function showLessonPart(type) {
         information[type] || "";
 
 
-    box.classList.remove("selected");
-
-
-    void box.offsetWidth;
-
-
-    box.classList.add("selected");
+    animateInfo(box);
 }
 
 
 /* =========================================================
-   16. 5-SLAYD — TEXNOLOGIK XARITA
+   17. 5-SLAYD
    ========================================================= */
 
 function openMapRow(row, type) {
@@ -1686,59 +1678,61 @@ function openMapRow(row, type) {
         .querySelectorAll(".map-row")
         .forEach(item => {
 
-            item.classList.remove("opened");
+            item.classList.remove(
+                "opened"
+            );
 
         });
 
 
     if (row) {
-        row.classList.add("opened");
+
+        row.classList.add(
+            "opened"
+        );
+
     }
 
 
     const box =
-        document.getElementById("mapInfo");
+        document.getElementById(
+            "mapInfo"
+        );
 
     if (!box) return;
 
 
     const information = {
 
-        "Kirish": `
+        Kirish: `
             <strong>01 / KIRISH</strong>
-
             <p>
-                O‘qituvchi o‘quvchilarning e’tiborini
-                mavzuga jalb qiladi va dars maqsadini
-                ochib beradi.
+                O‘quvchining e’tibori mavzuga jalb qilinadi
+                va dars maqsadi ochib beriladi.
             </p>
         `,
 
         "Yangi bilim": `
             <strong>02 / YANGI BILIM</strong>
-
             <p>
                 Yangi tushuncha va nazariy ma’lumotlar
-                tushuntiriladi. O‘quvchi ma’lumotni
-                tahlil qiladi.
+                o‘zlashtiriladi.
             </p>
         `,
 
         "Amaliy ish": `
             <strong>03 / AMALIY ISH</strong>
-
             <p>
                 O‘quvchi o‘zlashtirilgan bilimni
-                amaliy topshiriq orqali qo‘llaydi.
+                amaliy topshiriqda qo‘llaydi.
             </p>
         `,
 
-        "Nazorat": `
+        Nazorat: `
             <strong>04 / NAZORAT</strong>
-
             <p>
-                O‘quvchining bajargan ishi, bilim va
-                ko‘nikmalari baholanadi.
+                Bilim, ko‘nikma va bajarilgan ish
+                natijasi baholanadi.
             </p>
         `
 
@@ -1749,66 +1743,57 @@ function openMapRow(row, type) {
         information[type] || "";
 
 
-    box.classList.remove("selected");
-
-
-    void box.offsetWidth;
-
-
-    box.classList.add("selected");
+    animateInfo(box);
 }
 
 
 /* =========================================================
-   17. 6-SLAYD — TEXNOLOGIK TA’LIM
+   18. 6-SLAYD
    ========================================================= */
 
 function showTechStep(type) {
 
     const box =
-        document.getElementById("techStepInfo");
+        document.getElementById(
+            "techStepInfo"
+        );
 
     if (!box) return;
 
 
     const information = {
 
-        "Nazariya": `
+        Nazariya: `
             <strong>📚 01 / NAZARIYA</strong>
-
             <p>
-                O‘quvchi metall yoki metallmas material,
-                uning xususiyatlari va unga ishlov berish
-                texnologiyasi haqida nazariy bilim oladi.
+                O‘quvchi material, uning xususiyatlari
+                va ishlov berish texnologiyasi haqida
+                nazariy bilim oladi.
             </p>
         `,
 
-        "Namoyish": `
+        Namoyish: `
             <strong>👁 02 / NAMOYISH</strong>
-
             <p>
-                O‘qituvchi asbob-uskunadan foydalanish,
-                ishlov berish ketma-ketligi va xavfsizlik
-                qoidalarini amalda ko‘rsatadi.
+                O‘qituvchi amaliy harakatni,
+                texnologik ketma-ketlikni va
+                xavfsizlik qoidalarini ko‘rsatadi.
             </p>
         `,
 
         "Amaliy ish": `
             <strong>⚙ 03 / AMALIY ISH</strong>
-
             <p>
-                O‘quvchi berilgan topshiriqni mustaqil
-                bajarib, nazariy bilimini amaliy
-                ko‘nikmaga aylantiradi.
+                O‘quvchi berilgan topshiriqni
+                mustaqil bajaradi.
             </p>
         `,
 
-        "Nazorat": `
+        Nazorat: `
             <strong>✓ 04 / NAZORAT</strong>
-
             <p>
-                Bajarilgan ishning sifati, texnologik
-                ketma-ketlik va xavfsizlik qoidalariga
+                Bajarilgan ish sifati, texnologik
+                ketma-ketlik va xavfsizlik talablariga
                 rioya qilinishi baholanadi.
             </p>
         `
@@ -1824,46 +1809,107 @@ function showTechStep(type) {
         .querySelectorAll(".tech-step")
         .forEach(button => {
 
-            button.classList.remove("selected");
-
-        });
-
-
-    document
-        .querySelectorAll(".tech-step")
-        .forEach(button => {
+            button.classList.remove(
+                "selected"
+            );
 
             if (
                 button.innerText
                     .toUpperCase()
-                    .includes(type.toUpperCase())
+                    .includes(
+                        type.toUpperCase()
+                    )
             ) {
 
-                button.classList.add("selected");
+                button.classList.add(
+                    "selected"
+                );
 
             }
 
         });
 
 
-    box.classList.remove("selected");
-
-
-    void box.offsetWidth;
-
-
-    box.classList.add("selected");
+    animateInfo(box);
 }
 
 
 /* =========================================================
-   18. 7-SLAYD — DARS LOYIHASINI YIG‘ISH
+   19. 7-SLAYD
    ========================================================= */
 
-function buildLesson(type) {
+function showFinalPart(type) {
 
-    lessonBuilder[type] =
-        !lessonBuilder[type];
+    const box =
+        document.getElementById(
+            "finalPartInfo"
+        );
+
+    if (!box) return;
+
+
+    const information = {
+
+        Maqsad: `
+            <span>🎯</span>
+
+            <strong>MAQSAD</strong>
+
+            <small>
+                Dars yakunida o‘quvchi qanday
+                natijaga erishishi kerakligini belgilang.
+            </small>
+        `,
+
+        Metod: `
+            <span>⚙</span>
+
+            <strong>METOD</strong>
+
+            <small>
+                Belgilangan maqsadga mos
+                o‘qitish usulini tanlang.
+            </small>
+        `,
+
+        Amaliyot: `
+            <span>🛠</span>
+
+            <strong>AMALIYOT</strong>
+
+            <small>
+                O‘quvchi bilimini amalda
+                qo‘llashi uchun topshiriq bering.
+            </small>
+        `,
+
+        Baholash: `
+            <span>✓</span>
+
+            <strong>BAHOLASH</strong>
+
+            <small>
+                O‘quvchining kutilgan natijaga
+                erishganini aniqlang.
+            </small>
+        `
+
+    };
+
+
+    box.innerHTML =
+        information[type] || "";
+
+
+    document
+        .querySelectorAll(".final-flow button")
+        .forEach(button => {
+
+            button.classList.remove(
+                "selected"
+            );
+
+        });
 
 
     const buttons =
@@ -1872,140 +1918,48 @@ function buildLesson(type) {
         );
 
 
-    const names = [
+    const index = [
         "Maqsad",
         "Metod",
         "Amaliyot",
         "Baholash"
-    ];
+    ].indexOf(type);
 
 
-    buttons.forEach((button, index) => {
+    if (buttons[index]) {
 
-        if (
-            lessonBuilder[names[index]]
-        ) {
+        buttons[index]
+            .classList.add("selected");
 
-            button.classList.add("selected");
-
-        } else {
-
-            button.classList.remove("selected");
-
-        }
-
-    });
+    }
 
 
-    updateLessonBuilder();
+    animateInfo(box);
 }
 
 
 /* =========================================================
-   19. 7-SLAYD NATIJASINI YANGILASH
+   20. IZOH ANIMATSIYASI
    ========================================================= */
 
-function updateLessonBuilder() {
+function animateInfo(element) {
 
-    const box =
-        document.getElementById("lessonBuilder");
-
-    const message =
-        document.getElementById(
-            "lessonBuilderMessage"
-        );
+    element.classList.remove(
+        "selected"
+    );
 
 
-    if (!box) return;
+    void element.offsetWidth;
 
 
-    const count =
-        Object.values(lessonBuilder)
-            .filter(Boolean)
-            .length;
-
-
-    if (count === 0) {
-
-        box.innerHTML = `
-            <span>?</span>
-
-            <strong>
-                DARS LOYIHASI
-            </strong>
-
-            <small>
-                Yuqoridagi bosqichlarni tanlang
-            </small>
-        `;
-
-
-        if (message) {
-            message.textContent = "";
-        }
-
-
-        return;
-    }
-
-
-    if (count < 4) {
-
-        box.innerHTML = `
-            <span>${count}</span>
-
-            <strong>
-                BOSQICH TANLANDI
-            </strong>
-
-            <small>
-                Yana ${4 - count} ta bosqichni tanlang
-            </small>
-        `;
-
-
-        if (message) {
-
-            message.textContent =
-                "Dars loyihasi hali to‘liq emas.";
-
-        }
-
-
-        return;
-    }
-
-
-    box.innerHTML = `
-        <span>✓</span>
-
-        <strong>
-            DARS REJASI TAYYOR
-        </strong>
-
-        <small>
-            Maqsad → Metod → Amaliyot → Baholash
-        </small>
-    `;
-
-
-    if (message) {
-
-        message.innerHTML = `
-            <strong>🎉 Juda yaxshi!</strong>
-
-            <p>
-                Siz dars loyihasining asosiy
-                elementlarini to‘g‘ri birlashtirdingiz.
-            </p>
-        `;
-
-    }
+    element.classList.add(
+        "selected"
+    );
 }
 
 
 /* =========================================================
-   20. TESTNI BOSHLASH
+   21. TESTNI BOSHLASH
    ========================================================= */
 
 function startTest() {
@@ -2026,21 +1980,7 @@ function startTest() {
         createTestQuestions();
 
 
-    const lessonScreen =
-        document.getElementById("lesson");
-
-    const testScreen =
-        document.getElementById("test");
-
-
-    if (lessonScreen) {
-        lessonScreen.classList.remove("active");
-    }
-
-
-    if (testScreen) {
-        testScreen.classList.add("active");
-    }
+    showScreen("test");
 
 
     loadQuestion();
@@ -2048,7 +1988,7 @@ function startTest() {
 
 
 /* =========================================================
-   21. SAVOLNI YUKLASH
+   22. SAVOLNI YUKLASH
    ========================================================= */
 
 function loadQuestion() {
@@ -2079,18 +2019,15 @@ function loadQuestion() {
             "questionNumber"
         );
 
-
     const questionText =
         document.getElementById(
             "questionText"
         );
 
-
     const answersContainer =
         document.getElementById(
             "answers"
         );
-
 
     const timer =
         document.getElementById(
@@ -2130,7 +2067,6 @@ function loadQuestion() {
 
                 button.type = "button";
 
-
                 button.className =
                     "answer";
 
@@ -2146,14 +2082,17 @@ function loadQuestion() {
                 `;
 
 
-                button.onclick = function () {
+                button.addEventListener(
+                    "click",
+                    () => {
 
-                    selectAnswer(
-                        index,
-                        button
-                    );
+                        selectAnswer(
+                            index,
+                            button
+                        );
 
-                };
+                    }
+                );
 
 
                 answersContainer.appendChild(
@@ -2181,7 +2120,7 @@ function loadQuestion() {
 
 
 /* =========================================================
-   22. JAVOB TANLASH
+   23. JAVOB TANLASH
    ========================================================= */
 
 function selectAnswer(index, button) {
@@ -2211,30 +2150,34 @@ function selectAnswer(index, button) {
 
 
 /* =========================================================
-   23. JAVOBNI TASDIQLASH
+   24. JAVOBNI TASDIQLASH
    ========================================================= */
 
 function confirmAnswer() {
 
-    if (selectedAnswer === null) {
+    if (
+        selectedAnswer === null
+    ) {
 
         return;
 
     }
 
 
-    clearInterval(timerInterval);
+    clearInterval(
+        timerInterval
+    );
 
 
     const question =
         testQuestions[currentQuestion];
 
 
-    const selected =
-        question.answers[selectedAnswer];
-
-
-    if (selected && selected.correct) {
+    if (
+        question &&
+        question.answers[selectedAnswer] &&
+        question.answers[selectedAnswer].correct
+    ) {
 
         score += 10;
 
@@ -2260,12 +2203,14 @@ function confirmAnswer() {
 
 
 /* =========================================================
-   24. TIMER
+   25. TIMER
    ========================================================= */
 
 function startTimer() {
 
-    clearInterval(timerInterval);
+    clearInterval(
+        timerInterval
+    );
 
 
     timerInterval =
@@ -2299,12 +2244,14 @@ function startTimer() {
 
 
 /* =========================================================
-   25. VAQT TUGADI
+   26. VAQT TUGADI
    ========================================================= */
 
 function timeIsUp() {
 
-    clearInterval(timerInterval);
+    clearInterval(
+        timerInterval
+    );
 
 
     currentQuestion++;
@@ -2326,18 +2273,17 @@ function timeIsUp() {
 
 
 /* =========================================================
-   26. TEST PROGRESS
+   27. TEST PROGRESS
    ========================================================= */
 
 function updateTestProgress() {
 
-    const progressBar =
+    const progress =
         document.getElementById(
             "testProgressBar"
         );
 
-
-    if (!progressBar) return;
+    if (!progress) return;
 
 
     const percent =
@@ -2345,39 +2291,29 @@ function updateTestProgress() {
             testQuestions.length) * 100;
 
 
-    progressBar.style.width =
-        percent + "%";
+    progress.style.width =
+        `${percent}%`;
 }
 
 
 /* =========================================================
-   27. TEST NATIJASI
+   28. TEST NATIJASI
    ========================================================= */
 
 function showResult() {
 
-    clearInterval(timerInterval);
+    clearInterval(
+        timerInterval
+    );
 
 
-    const testScreen =
-        document.getElementById("test");
-
-    const resultScreen =
-        document.getElementById("result");
-
-
-    if (testScreen) {
-        testScreen.classList.remove("active");
-    }
-
-
-    if (resultScreen) {
-        resultScreen.classList.add("active");
-    }
+    showScreen("result");
 
 
     const scoreElement =
-        document.getElementById("score");
+        document.getElementById(
+            "score"
+        );
 
 
     const resultMessage =
@@ -2423,44 +2359,29 @@ function showResult() {
 
 
 /* =========================================================
-   28. YAKUNIY EKRAN
+   29. YAKUNIY EKRAN
    ========================================================= */
 
 function showFinal() {
 
-    const resultScreen =
-        document.getElementById("result");
-
-    const finalScreen =
-        document.getElementById("final");
+    clearInterval(
+        timerInterval
+    );
 
 
-    if (resultScreen) {
-
-        resultScreen.classList.remove(
-            "active"
-        );
-
-    }
-
-
-    if (finalScreen) {
-
-        finalScreen.classList.add(
-            "active"
-        );
-
-    }
+    showScreen("final");
 }
 
 
 /* =========================================================
-   29. DARSNI QAYTA BOSHLASH
+   30. DARSNI QAYTA BOSHLASH
    ========================================================= */
 
 function restartLesson() {
 
-    clearInterval(timerInterval);
+    clearInterval(
+        timerInterval
+    );
 
 
     currentSlide = 0;
@@ -2473,48 +2394,15 @@ function restartLesson() {
 
     timeLeft = 30;
 
-
-    lessonBuilder = {
-        Maqsad: false,
-        Metod: false,
-        Amaliyot: false,
-        Baholash: false
-    };
+    testQuestions = [];
 
 
-    const screens =
-        document.querySelectorAll(
-            ".screen"
-        );
-
-
-    screens.forEach(screen => {
-
-        screen.classList.remove(
-            "active"
-        );
-
-    });
-
-
-    const startScreen =
-        document.getElementById(
-            "startScreen"
-        );
-
-
-    if (startScreen) {
-
-        startScreen.classList.add(
-            "active"
-        );
-
-    }
+    showScreen("startScreen");
 }
 
 
 /* =========================================================
-   30. KLAVIATURA ORQALI BOSHQARISH
+   31. KLAVIATURA
    ========================================================= */
 
 document.addEventListener(
@@ -2529,6 +2417,7 @@ document.addEventListener(
 
         if (
             !lesson ||
+            lesson.hidden ||
             !lesson.classList.contains(
                 "active"
             )
@@ -2539,14 +2428,18 @@ document.addEventListener(
         }
 
 
-        if (event.key === "ArrowRight") {
+        if (
+            event.key === "ArrowRight"
+        ) {
 
             nextSlide();
 
         }
 
 
-        if (event.key === "ArrowLeft") {
+        if (
+            event.key === "ArrowLeft"
+        ) {
 
             previousSlide();
 
@@ -2557,34 +2450,49 @@ document.addEventListener(
 
 
 /* =========================================================
-   31. SAHIFA YUKLANGANDA
+   32. SAHIFA YUKLANGANDA
    ========================================================= */
 
 document.addEventListener(
     "DOMContentLoaded",
     function () {
 
-        /*
-         * Agar lesson ekrani boshidan
-         * active bo‘lsa, birinchi slaydni chiqaramiz.
-         */
-
-        const lesson =
-            document.getElementById(
-                "lesson"
+        const screens =
+            document.querySelectorAll(
+                ".screen"
             );
 
 
-        if (
-            lesson &&
-            lesson.classList.contains(
-                "active"
-            )
-        ) {
+        /*
+         * Boshlanishda faqat startScreen
+         * ko‘rinadi.
+         */
 
-            renderSlide();
+        screens.forEach(screen => {
+
+            screen.hidden = true;
+
+        });
+
+
+        const startScreen =
+            document.getElementById(
+                "startScreen"
+            );
+
+
+        if (startScreen) {
+
+            startScreen.hidden = false;
+
+            startScreen.classList.add(
+                "active"
+            );
 
         }
+
+
+        renderSlide();
 
     }
 );
