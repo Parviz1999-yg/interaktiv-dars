@@ -1,303 +1,553 @@
-/* =====================================================
-   INTERAKTIV DARS — SCRIPT
-===================================================== */
+let currentSlide = 0;
+let currentQuestion = 0;
+let score = 0;
+let selectedAnswer = null;
+let timerInterval = null;
+let timeLeft = 30;
 
 
-/* =====================================================
-   1. SLAYDLAR
-===================================================== */
+// ===============================
+// DARS SLAYDLARI
+// ===============================
 
 const slides = [
 
     {
-        title: "Kirish",
+        title: "Nega darsni oldindan loyihalash kerak?",
+        label: "01 / MUAMMO",
+        type: "problem",
+
         description: `
-            <p>
-                Ta'lim texnologiyalariga asoslangan dars rejasi —
-                ta'lim jarayonini aniq maqsad, metod va natija
-                asosida tashkil etishga xizmat qiladi.
+            <p class="lead-text">
+                Bir xil mavzuni ikki xil o‘qituvchi turlicha tashkil qilishi
+                mumkin. Natijada o‘quvchilarning faolligi, tushunishi va
+                amaliy natijasi ham farq qiladi.
             </p>
 
-            <div class="flow">
-                <span>MAQSAD</span>
-                <b>→</b>
-                <span>JARAYON</span>
-                <b>→</b>
-                <span>NATIJA</span>
+            <p>
+                Shuning uchun zamonaviy dars faqat mavzuni tushuntirishdan
+                iborat emas. O‘qituvchi darsning <b>maqsadi</b>, 
+                <b>mazmuni</b>, <b>metodi</b>, <b>vositalari</b>,
+                <b>o‘quvchi faoliyati</b> va <b>baholash mezonlarini</b>
+                oldindan loyihalashi kerak.
+            </p>
+
+            <div class="important-question">
+                <span>?</span>
+                <div>
+                    <strong>Asosiy savol</strong>
+                    <p>
+                        Qanday qilib darsni shunday loyihalash mumkinki,
+                        o‘quvchi bilimni nafaqat eshitsin, balki uni amalda qo‘llay olsin?
+                    </p>
+                </div>
+            </div>
+        `,
+
+        visual: `
+            <div class="problem-visual">
+
+                <div class="visual-question">
+                    <span class="question-mark">?</span>
+                    <div>
+                        <small>MUAMMO</small>
+                        <strong>DARS NATIJASI<br>NIMAGA BOG‘LIQ?</strong>
+                    </div>
+                </div>
+
+                <div class="lesson-flow">
+
+                    <div class="flow-person teacher">
+                        <div class="person-icon">👨‍🏫</div>
+                        <span>O‘QITUVCHI</span>
+                    </div>
+
+                    <div class="flow-arrow">
+                        <span></span>
+                    </div>
+
+                    <div class="flow-center">
+                        <div class="center-ring">
+                            <div class="center-core">DARS</div>
+                        </div>
+                        <small>LOYIHA</small>
+                    </div>
+
+                    <div class="flow-arrow">
+                        <span></span>
+                    </div>
+
+                    <div class="flow-person student">
+                        <div class="person-icon">👨‍🎓</div>
+                        <span>O‘QUVCHI</span>
+                    </div>
+
+                </div>
+
+                <div class="visual-bottom">
+                    <div class="mini-card">
+                        <b>01</b>
+                        <span>Maqsad</span>
+                    </div>
+
+                    <div class="mini-card">
+                        <b>02</b>
+                        <span>Jarayon</span>
+                    </div>
+
+                    <div class="mini-card">
+                        <b>03</b>
+                        <span>Natija</span>
+                    </div>
+                </div>
+
             </div>
         `
     },
+
 
     {
-        title: "Ta'lim texnologiyasi nima?",
+        title: "Ta’lim texnologiyasi nima?",
+        label: "02 / TUSHUNCHA",
+        type: "concept",
+
         description: `
-            <p>
-                Ta'lim texnologiyasi — belgilangan ta'lim
-                maqsadiga erishish uchun o'qitish jarayonini
-                tizimli ravishda tashkil etish usulidir.
+            <p class="lead-text">
+                Ta’lim texnologiyasi — ta’lim maqsadiga erishish uchun
+                o‘qituvchi va o‘quvchi faoliyatini oldindan rejalashtirish,
+                tashkil etish va nazorat qilish tizimidir.
             </p>
 
-            <div class="concepts">
-                <div>
-                    <strong>MAQSAD</strong>
-                    <small>Nima uchun?</small>
+            <p>
+                Uning asosida uchta muhim element mavjud:
+                <b>maqsad</b>, <b>jarayon</b> va <b>natija</b>.
+                Ular bir-biri bilan uzviy bog‘langan.
+            </p>
+        `,
+
+        visual: `
+            <div class="concept-visual">
+
+                <div class="concept-center">
+                    <div class="concept-pulse"></div>
+                    <strong>TA’LIM</strong>
+                    <strong>TEXNOLOGIYASI</strong>
                 </div>
 
-                <div>
-                    <strong>JARAYON</strong>
-                    <small>Qanday?</small>
+                <button class="concept-node node-top"
+                    onclick="showConceptInfo('Maqsad')">
+                    🎯
+                    <span>MAQSAD</span>
+                </button>
+
+                <button class="concept-node node-left"
+                    onclick="showConceptInfo('Jarayon')">
+                    ⚙
+                    <span>JARAYON</span>
+                </button>
+
+                <button class="concept-node node-right"
+                    onclick="showConceptInfo('Natija')">
+                    ✓
+                    <span>NATIJA</span>
+                </button>
+
+                <div id="conceptInfo" class="concept-info">
+                    Elementlardan birini tanlang
                 </div>
 
-                <div>
-                    <strong>NATIJA</strong>
-                    <small>Nimaga erishildi?</small>
-                </div>
             </div>
         `
     },
+
 
     {
-        title: "Ta'lim texnologiyalarining asosiy turlari",
+        title: "Ta’lim texnologiyalarining asosiy turlari",
+        label: "03 / METOD",
+        type: "methods",
+
         description: `
-            <p>
-                Dars mazmuni va maqsadiga qarab turli ta'lim
-                texnologiyalaridan foydalanish mumkin.
+            <p class="lead-text">
+                Har bir dars uchun bitta universal metod mavjud emas.
+                Metod darsning maqsadi, mazmuni va o‘quvchi faoliyatiga
+                mos ravishda tanlanadi.
             </p>
 
-            <div class="technology-list">
-                <span>Muammoli ta'lim</span>
-                <span>Loyihaviy ta'lim</span>
-                <span>Interaktiv metodlar</span>
-                <span>AKT</span>
-                <span>Hamkorlikdagi ta'lim</span>
-                <span>Aralash ta'lim</span>
+            <p>
+                Ayniqsa texnologik ta’limda nazariy bilimni amaliy faoliyat
+                bilan bog‘lash muhim hisoblanadi.
+            </p>
+        `,
+
+        visual: `
+            <div class="methods-visual">
+
+                <div class="method-title">
+                    VAZIYATNI TANLANG
+                </div>
+
+                <div class="scenario-grid">
+
+                    <button onclick="selectMethod('Muammoli ta’lim')">
+                        <span>?</span>
+                        <b>Muammo mavjud</b>
+                        <small>O‘quvchi yechim izlaydi</small>
+                    </button>
+
+                    <button onclick="selectMethod('Hamkorlikdagi ta’lim')">
+                        <span>👥</span>
+                        <b>Guruh bilan ishlash</b>
+                        <small>Birgalikda faoliyat</small>
+                    </button>
+
+                    <button onclick="selectMethod('Loyihaviy ta’lim')">
+                        <span>◈</span>
+                        <b>Loyiha yaratish</b>
+                        <small>Amaliy mahsulot</small>
+                    </button>
+
+                    <button onclick="selectMethod('Amaliy ta’lim')">
+                        <span>⚙</span>
+                        <b>Amaliy ko‘nikma</b>
+                        <small>Harakat orqali o‘rganish</small>
+                    </button>
+
+                </div>
+
+                <div id="methodResult" class="method-result">
+                    Vaziyatni tanlang
+                </div>
+
             </div>
         `
     },
+
 
     {
         title: "Dars rejasining tuzilishi",
+        label: "04 / LOYIHALASH",
+        type: "constructor",
+
         description: `
-            <p>
-                Samarali dars rejasi bosqichma-bosqich
-                tashkil etiladi.
+            <p class="lead-text">
+                Dars rejasi tasodifiy tuzilmaydi. Uning har bir qismi
+                oldingi bosqich bilan mantiqan bog‘lanadi.
             </p>
 
-            <div class="timeline">
+            <p>
+                Maqsad aniqlanadi → mazmun tanlanadi → metod belgilanadi →
+                vositalar tayyorlanadi → amaliy topshiriq beriladi →
+                natija baholanadi.
+            </p>
+        `,
 
-                <span>01<br>MAQSAD</span>
-                <b>→</b>
+        visual: `
+            <div class="constructor-visual">
 
-                <span>02<br>MOTIV</span>
-                <b>→</b>
+                <div class="constructor-label">
+                    DARSNI BOSQICHMA-BOSQICH QURING
+                </div>
 
-                <span>03<br>YANGI BILIM</span>
-                <b>→</b>
+                <div class="constructor-track">
 
-                <span>04<br>AMALIY ISH</span>
-                <b>→</b>
+                    <div class="construct-block">
+                        <b>01</b>
+                        🎯
+                        <span>MAQSAD</span>
+                    </div>
 
-                <span>05<br>NAZORAT</span>
-                <b>→</b>
+                    <div class="construct-line"></div>
 
-                <span>06<br>XULOSA</span>
+                    <div class="construct-block">
+                        <b>02</b>
+                        📚
+                        <span>MAZMUN</span>
+                    </div>
+
+                    <div class="construct-line"></div>
+
+                    <div class="construct-block">
+                        <b>03</b>
+                        ⚙
+                        <span>METOD</span>
+                    </div>
+
+                    <div class="construct-line"></div>
+
+                    <div class="construct-block">
+                        <b>04</b>
+                        🛠
+                        <span>VOSITA</span>
+                    </div>
+
+                </div>
+
+                <div class="constructor-bottom">
+                    <div>TOPSHIRIQ</div>
+                    <div>BAHOLASH</div>
+                    <strong>→ DARS NATIJASI</strong>
+                </div>
 
             </div>
         `
     },
 
+
     {
-        title: "Dars rejasini ishlab chiqish bosqichlari",
+        title: "Texnologik xarita",
+        label: "05 / AMALIY LOYIHA",
+        type: "map",
+
         description: `
-            <p>
-                Dars rejasini tuzishda avvalo maqsad belgilanadi,
-                so'ngra mazmun, metod, vositalar va baholash
-                mexanizmi aniqlanadi.
+            <p class="lead-text">
+                Texnologik xarita dars jarayonini bosqichlar bo‘yicha
+                oldindan ko‘rish imkonini beradi.
             </p>
 
-            <div class="algorithm">
-                <span>1. Maqsadni aniqlash</span>
-                <span>2. Mazmunni tanlash</span>
-                <span>3. Metodni tanlash</span>
-                <span>4. Vositalarni belgilash</span>
-                <span>5. Topshiriqni ishlab chiqish</span>
-                <span>6. Baholash</span>
+            <p>
+                Unda o‘qituvchi nima qiladi, o‘quvchi nima qiladi,
+                qanday metod va vositalardan foydalaniladi hamda
+                qanday natija kutilishi belgilanadi.
+            </p>
+        `,
+
+        visual: `
+            <div class="map-visual">
+
+                <div class="map-header">
+                    <span>BOSQICH</span>
+                    <span>O‘QITUVCHI</span>
+                    <span>O‘QUVCHI</span>
+                </div>
+
+                <div class="map-row" onclick="openMapRow(this)">
+                    <b>01</b>
+                    <span>Kirish</span>
+                    <span>Motivatsiya beradi</span>
+                    <span>Faol qatnashadi</span>
+                </div>
+
+                <div class="map-row" onclick="openMapRow(this)">
+                    <b>02</b>
+                    <span>Yangi bilim</span>
+                    <span>Tushuntiradi</span>
+                    <span>Tahlil qiladi</span>
+                </div>
+
+                <div class="map-row" onclick="openMapRow(this)">
+                    <b>03</b>
+                    <span>Amaliy ish</span>
+                    <span>Yo‘naltiradi</span>
+                    <span>Bajaradi</span>
+                </div>
+
+                <div class="map-row" onclick="openMapRow(this)">
+                    <b>04</b>
+                    <span>Nazorat</span>
+                    <span>Baholaydi</span>
+                    <span>Natijasini ko‘rsatadi</span>
+                </div>
+
             </div>
         `
     },
 
+
     {
-        title: "Texnologik ta'limda qo'llash",
+        title: "Texnologik ta’limga moslashtirish",
+        label: "06 / TEXNOLOGIK TA’LIM",
+        type: "technology",
+
         description: `
-            <p>
-                Texnologik ta'limda nazariya va amaliyot
-                bir-birini to'ldiradi. O'quvchi bilimni
-                amaliy faoliyat orqali mustahkamlaydi.
+            <p class="lead-text">
+                “Metallar va metallmaslarga ishlov berishni o‘qitish
+                metodikasi” fanida dars nazariya va amaliy faoliyat
+                birligiga asoslanadi.
             </p>
 
-            <div class="technology-chain">
+            <p>
+                O‘quvchi avval material va texnologik jarayon haqida
+                bilim oladi, keyin o‘qituvchi namoyishini kuzatadi,
+                amaliy topshiriqni bajaradi va yakunda natijasi baholanadi.
+            </p>
+        `,
 
-                <span>NAZARIYA</span>
-                <b>+</b>
+        visual: `
+            <div class="technology-visual">
 
-                <span>KO'RSATMALI TA'LIM</span>
-                <b>+</b>
+                <div class="material-orbit">
+                    <div class="metal-core">⚙</div>
 
-                <span>AMALIY FAOLIYAT</span>
-                <b>+</b>
+                    <div class="orbit orbit-1">
+                        <span>METALL</span>
+                    </div>
 
-                <span>NAZORAT</span>
+                    <div class="orbit orbit-2">
+                        <span>ASBOB</span>
+                    </div>
 
-                <strong>→ NATIJA</strong>
+                    <div class="orbit orbit-3">
+                        <span>AMALIYOT</span>
+                    </div>
+                </div>
+
+                <div class="tech-process">
+
+                    <div class="tech-step">
+                        <b>01</b>
+                        <span>NAZARIYA</span>
+                    </div>
+
+                    <i>→</i>
+
+                    <div class="tech-step">
+                        <b>02</b>
+                        <span>NAMOYISH</span>
+                    </div>
+
+                    <i>→</i>
+
+                    <div class="tech-step">
+                        <b>03</b>
+                        <span>AMALIY ISH</span>
+                    </div>
+
+                    <i>→</i>
+
+                    <div class="tech-step">
+                        <b>04</b>
+                        <span>NAZORAT</span>
+                    </div>
+
+                </div>
 
             </div>
         `
     },
 
+
     {
-        title: "Namunaviy dars rejasi va xulosa",
+        title: "Darsni o‘zimiz tuzamiz",
+        label: "07 / XULOSA",
+        type: "final",
+
         description: `
-            <p>
-                Darsning barcha bosqichlari yagona tizimga
-                birlashtirilganda o'quv faoliyati maqsadli,
-                izchil va natijaga yo'naltirilgan bo'ladi.
+            <p class="lead-text">
+                Endi dars loyihachisi — siz.
             </p>
 
-            <div class="final-flow">
+            <p>
+                Yaxshi dars uchun asosiy elementlarni bir tizimga
+                birlashtiring: maqsad, metod, vosita, amaliy topshiriq
+                va baholash.
+            </p>
 
-                <span>MAQSAD</span>
-                <b>→</b>
+            <div class="final-message">
+                <strong>DARS REJASI = MAQSAD + JARAYON + NATIJA</strong>
+            </div>
+        `,
 
-                <span>METOD</span>
-                <b>→</b>
+        visual: `
+            <div class="final-visual">
 
-                <span>JARAYON</span>
-                <b>→</b>
+                <div class="final-title">
+                    DARS LOYIHASI
+                </div>
 
-                <span>AMALIY TOPSHIRIQ</span>
-                <b>→</b>
+                <div class="final-flow">
 
-                <span>BAHOLASH</span>
-                <b>→</b>
+                    <div>🎯<span>MAQSAD</span></div>
+                    <i>→</i>
+                    <div>⚙<span>METOD</span></div>
+                    <i>→</i>
+                    <div>🛠<span>AMALIYOT</span></div>
+                    <i>→</i>
+                    <div>✓<span>BAHOLASH</span></div>
 
-                <strong>NATIJA</strong>
+                </div>
+
+                <div class="ready-box">
+                    <span>✓</span>
+                    <strong>DARS REJASI TAYYOR</strong>
+                </div>
 
             </div>
-
-            <h3 class="test-intro">
-                Endi bilimni sinab ko'ramiz.
-            </h3>
         `
     }
-
 ];
 
 
-/* =====================================================
-   2. O'ZGARUVCHILAR
-===================================================== */
-
-let currentSlide = 0;
-
-let currentQuestion = 0;
-
-let score = 0;
-
-let selectedAnswer = null;
-
-let timerInterval = null;
-
-let timeLeft = 30;
-
-
-/* =====================================================
-   3. TEST SAVOLLARI
-===================================================== */
+// ===============================
+// TEST SAVOLLARI
+// ===============================
 
 const questions = [
 
     {
-        question:
-            "Ta'lim texnologiyasining asosiy tarkibiy qismlari qaysilar?",
-
+        question: "Ta’lim texnologiyasining asosiy maqsadi nima?",
         answers: [
-            "Maqsad, jarayon va natija",
-            "Faqat nazariya",
-            "Faqat amaliy ish",
-            "Faqat baholash"
+            "Faqat o‘qituvchini nazorat qilish",
+            "Ta’lim jarayonini maqsadli va samarali tashkil etish",
+            "Faqat dars vaqtini qisqartirish",
+            "Faqat baho qo‘yish"
         ],
-
-        correct: 0
-    },
-
-    {
-        question:
-            "Dars rejasini tuzishda birinchi navbatda nima aniqlanadi?",
-
-        answers: [
-            "Uyga vazifa",
-            "Maqsad",
-            "Baholar",
-            "Tanaffus vaqti"
-        ],
-
         correct: 1
     },
 
     {
-        question:
-            "Texnologik ta'limning muhim tarkibiy qismi qaysi?",
-
+        question: "Dars rejasini tuzishda birinchi navbatda nima belgilanadi?",
         answers: [
-            "Faqat matn o'qish",
-            "Faqat nazorat",
-            "Amaliy faoliyat",
-            "Faqat ma'ruza"
+            "Maqsad",
+            "Uyga vazifa",
+            "Baholash",
+            "Tanaffus vaqti"
         ],
-
-        correct: 2
-    },
-
-    {
-        question:
-            "Dars rejasida baholashning vazifasi nima?",
-
-        answers: [
-            "Natijani aniqlash",
-            "Darsni to'xtatish",
-            "Vaqtni o'tkazish",
-            "Faqat davomatni tekshirish"
-        ],
-
         correct: 0
     },
 
     {
-        question:
-            "Ta'lim texnologiyasining asosiy maqsadi nima?",
-
+        question: "Texnologik xaritada kimning faoliyati aks ettiriladi?",
         answers: [
-            "Ko'proq topshiriq berish",
-            "Darsni uzaytirish",
-            "Ta'lim maqsadiga samarali erishish",
-            "Faqat nazorat o'tkazish"
+            "Faqat o‘qituvchining",
+            "Faqat o‘quvchining",
+            "O‘qituvchi va o‘quvchining",
+            "Faqat direktorning"
         ],
-
         correct: 2
+    },
+
+    {
+        question: "Texnologik ta’limda nazariy bilimdan keyin nima muhim?",
+        answers: [
+            "Amaliy faoliyat",
+            "Faqat yozma nazorat",
+            "Darsni to‘xtatish",
+            "Faqat ma’ruza"
+        ],
+        correct: 0
+    },
+
+    {
+        question: "Dars natijasi nimaga bog‘liq?",
+        answers: [
+            "Faqat darslikka",
+            "Maqsad, jarayon va baholashning uyg‘unligiga",
+            "Faqat o‘quvchiga",
+            "Faqat texnikaga"
+        ],
+        correct: 1
     }
 
 ];
 
 
-/* =====================================================
-   4. EKRANNI ALMASHTIRISH
-===================================================== */
+// ===============================
+// EKRAN ALMASHTIRISH
+// ===============================
 
 function showScreen(screenId) {
 
-    const screens = document.querySelectorAll(".screen");
-
-    screens.forEach(function(screen) {
+    document.querySelectorAll(".screen").forEach(screen => {
         screen.classList.remove("active");
     });
 
@@ -306,12 +556,17 @@ function showScreen(screenId) {
     if (target) {
         target.classList.add("active");
     }
+
+    window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+    });
 }
 
 
-/* =====================================================
-   5. DARSNI BOSHLASH
-===================================================== */
+// ===============================
+// DARSNI BOSHLASH
+// ===============================
 
 function startLesson() {
 
@@ -323,13 +578,22 @@ function startLesson() {
 }
 
 
-/* =====================================================
-   6. SLAYDNI CHIQARISH
-===================================================== */
+// ===============================
+// SLAYDNI CHIZISH
+// ===============================
 
 function renderSlide() {
 
     const slide = slides[currentSlide];
+
+    document.getElementById("slideNumber").textContent =
+        `${String(currentSlide + 1).padStart(2, "0")} / ${String(slides.length).padStart(2, "0")}`;
+
+    document.getElementById("progressBar").style.width =
+        `${((currentSlide + 1) / slides.length) * 100}%`;
+
+    document.querySelector(".section-label").textContent =
+        slide.label;
 
     document.getElementById("slideTitle").textContent =
         slide.title;
@@ -337,47 +601,47 @@ function renderSlide() {
     document.getElementById("slideDescription").innerHTML =
         slide.description;
 
-    document.getElementById("slideNumber").textContent =
-        String(currentSlide + 1).padStart(2, "0") +
-        " / " +
-        String(slides.length).padStart(2, "0");
+    document.getElementById("slideVisual").innerHTML =
+        slide.visual;
 
-    const progress =
-        ((currentSlide + 1) / slides.length) * 100;
+    document.getElementById("lesson").className =
+        `screen active slide-${slide.type}`;
 
-    document.getElementById("progressBar").style.width =
-        progress + "%";
-
-    const visual =
-        document.getElementById("slideVisual");
-
-    visual.innerHTML = `
-        <div class="visual-circle"></div>
-
-        <div class="visual-number">
-            ${String(currentSlide + 1).padStart(2, "0")}
-        </div>
-    `;
+    const previousButton =
+        document.querySelector(".lesson-navigation .nav-btn");
 
     const nextButton =
-        document.querySelector(".nav-btn.next");
+        document.querySelector(".lesson-navigation .next");
+
+    previousButton.disabled = currentSlide === 0;
 
     if (currentSlide === slides.length - 1) {
 
-        nextButton.textContent =
-            "⚡ TESTNI BOSHLASH";
+        nextButton.textContent = "⚡ TESTGA O‘TISH";
+
+        nextButton.onclick = startTest;
 
     } else {
 
-        nextButton.textContent =
-            "KEYINGI →";
+        nextButton.textContent = "KEYINGI →";
+
+        nextButton.onclick = nextSlide;
     }
+
+    // Animatsiyani qayta ishga tushirish
+    const visual = document.getElementById("slideVisual");
+
+    visual.classList.remove("animate-slide");
+
+    void visual.offsetWidth;
+
+    visual.classList.add("animate-slide");
 }
 
 
-/* =====================================================
-   7. KEYINGI SLAYD
-===================================================== */
+// ===============================
+// KEYINGI SLAYD
+// ===============================
 
 function nextSlide() {
 
@@ -386,17 +650,13 @@ function nextSlide() {
         currentSlide++;
 
         renderSlide();
-
-    } else {
-
-        startTest();
     }
 }
 
 
-/* =====================================================
-   8. OLDINGI SLAYD
-===================================================== */
+// ===============================
+// OLDINGI SLAYD
+// ===============================
 
 function previousSlide() {
 
@@ -409,18 +669,99 @@ function previousSlide() {
 }
 
 
-/* =====================================================
-   9. TESTNI BOSHLASH
-===================================================== */
+// ===============================
+// 2-SLAYD: TUSHUNCHA
+// ===============================
+
+function showConceptInfo(type) {
+
+    const box = document.getElementById("conceptInfo");
+
+    if (!box) return;
+
+    const information = {
+
+        "Maqsad": `
+            <strong>🎯 MAQSAD</strong>
+            <p>
+                Dars yakunida o‘quvchi qanday bilim, ko‘nikma
+                yoki kompetensiyaga ega bo‘lishi kerakligini belgilaydi.
+            </p>
+        `,
+
+        "Jarayon": `
+            <strong>⚙ JARAYON</strong>
+            <p>
+                Maqsadga erishish uchun metodlar, vositalar,
+                topshiriqlar va o‘quvchi faoliyati tashkil etiladi.
+            </p>
+        `,
+
+        "Natija": `
+            <strong>✓ NATIJA</strong>
+            <p>
+                Dars yakunida o‘quvchining bilim va amaliy
+                ko‘nikmalari orqali erishilgan natija aniqlanadi.
+            </p>
+        `
+    };
+
+    box.innerHTML = information[type];
+
+    box.classList.remove("show");
+
+    void box.offsetWidth;
+
+    box.classList.add("show");
+}
+
+
+// ===============================
+// 3-SLAYD: METOD TANLASH
+// ===============================
+
+function selectMethod(method) {
+
+    const result = document.getElementById("methodResult");
+
+    if (!result) return;
+
+    result.innerHTML = `
+        <span>✓</span>
+        <div>
+            <small>MOS METOD</small>
+            <strong>${method}</strong>
+        </div>
+    `;
+
+    result.classList.add("selected");
+}
+
+
+// ===============================
+// 5-SLAYD: TEXNOLOGIK XARITA
+// ===============================
+
+function openMapRow(row) {
+
+    document.querySelectorAll(".map-row").forEach(item => {
+        item.classList.remove("opened");
+    });
+
+    row.classList.add("opened");
+}
+
+
+// ===============================
+// TESTNI BOSHLASH
+// ===============================
 
 function startTest() {
 
     clearInterval(timerInterval);
 
     currentQuestion = 0;
-
     score = 0;
-
     selectedAnswer = null;
 
     showScreen("test");
@@ -429,53 +770,43 @@ function startTest() {
 }
 
 
-/* =====================================================
-   10. SAVOLNI YUKLASH
-===================================================== */
+// ===============================
+// SAVOLNI YUKLASH
+// ===============================
 
 function loadQuestion() {
 
     clearInterval(timerInterval);
 
-    selectedAnswer = null;
-
-    timeLeft = 30;
-
-    const question =
-        questions[currentQuestion];
+    const question = questions[currentQuestion];
 
     document.getElementById("questionNumber").textContent =
-        "SAVOL " +
-        (currentQuestion + 1) +
-        " / " +
-        questions.length;
+        `SAVOL ${currentQuestion + 1} / ${questions.length}`;
 
     document.getElementById("questionText").textContent =
         question.question;
 
-    const answersContainer =
+    const answersBox =
         document.getElementById("answers");
 
-    answersContainer.innerHTML = "";
+    answersBox.innerHTML = "";
 
-    question.answers.forEach(function(answer, index) {
+    selectedAnswer = null;
 
-        const button =
-            document.createElement("button");
+    question.answers.forEach((answer, index) => {
+
+        const button = document.createElement("button");
 
         button.className = "answer";
 
-        button.textContent =
-            String.fromCharCode(65 + index) +
-            ". " +
-            answer;
+        button.innerHTML = `
+            <span>${String.fromCharCode(65 + index)}</span>
+            ${answer}
+        `;
 
-        button.onclick = function() {
-            selectAnswer(index);
-        };
+        button.onclick = () => selectAnswer(index);
 
-        answersContainer.appendChild(button);
-
+        answersBox.appendChild(button);
     });
 
     document.getElementById("feedback").textContent = "";
@@ -486,68 +817,74 @@ function loadQuestion() {
 }
 
 
-/* =====================================================
-   11. JAVOBNI TANLASH
-===================================================== */
+// ===============================
+// JAVOB TANLASH
+// ===============================
 
 function selectAnswer(index) {
 
     selectedAnswer = index;
 
-    const buttons =
-        document.querySelectorAll(".answer");
+    document.querySelectorAll(".answer").forEach((button, i) => {
 
-    buttons.forEach(function(button, i) {
-
-        if (i === index) {
-            button.classList.add("selected");
-        } else {
-            button.classList.remove("selected");
-        }
-
+        button.classList.toggle(
+            "selected",
+            i === index
+        );
     });
 }
 
 
-/* =====================================================
-   12. JAVOBNI TASDIQLASH
-===================================================== */
+// ===============================
+// JAVOBNI TASDIQLASH
+// ===============================
 
 function confirmAnswer() {
 
     if (selectedAnswer === null) {
 
         document.getElementById("feedback").textContent =
-            "Avval javobni tanlang.";
+            "Avval javoblardan birini tanlang.";
 
         return;
     }
 
     clearInterval(timerInterval);
 
-    const question =
-        questions[currentQuestion];
+    const correct =
+        questions[currentQuestion].correct;
 
-    const feedback =
-        document.getElementById("feedback");
-
-    if (selectedAnswer === question.correct) {
+    if (selectedAnswer === correct) {
 
         score += 10;
 
-        feedback.textContent =
-            "✓ TO‘G‘RI! +10 BALL";
+        document.getElementById("feedback").textContent =
+            "✓ To‘g‘ri javob!";
 
     } else {
 
-        feedback.textContent =
-            "✕ NOTO‘G‘RI. To‘g‘ri javob: " +
-            question.answers[question.correct];
+        document.getElementById("feedback").textContent =
+            "✕ Noto‘g‘ri javob.";
     }
 
     document.getElementById("confirmButton").disabled = true;
 
-    setTimeout(function() {
+    document.querySelectorAll(".answer").forEach((button, index) => {
+
+        if (index === correct) {
+            button.classList.add("correct");
+        }
+
+        if (
+            index === selectedAnswer &&
+            selectedAnswer !== correct
+        ) {
+            button.classList.add("wrong");
+        }
+
+    });
+
+    setTimeout(() => {
 
         currentQuestion++;
 
@@ -564,50 +901,47 @@ function confirmAnswer() {
 }
 
 
-/* =====================================================
-   13. TIMER
-===================================================== */
+// ===============================
+// TIMER
+// ===============================
 
 function startTimer() {
 
-    const timer =
-        document.getElementById("timer");
+    timeLeft = 30;
 
-    timer.textContent = timeLeft;
+    document.getElementById("timer").textContent =
+        timeLeft;
 
-    timerInterval =
-        setInterval(function() {
+    timerInterval = setInterval(() => {
 
-            timeLeft--;
+        timeLeft--;
 
-            timer.textContent = timeLeft;
+        document.getElementById("timer").textContent =
+            timeLeft;
 
-            if (timeLeft <= 0) {
+        if (timeLeft <= 0) {
 
-                clearInterval(timerInterval);
+            timeIsUp();
+        }
 
-                timeIsUp();
-            }
-
-        }, 1000);
+    }, 1000);
 }
 
 
-/* =====================================================
-   14. VAQT TUGADI
-===================================================== */
+// ===============================
+// VAQT TUGADI
+// ===============================
 
 function timeIsUp() {
 
-    const feedback =
-        document.getElementById("feedback");
+    clearInterval(timerInterval);
 
-    feedback.textContent =
+    document.getElementById("feedback").textContent =
         "⏱ Vaqt tugadi!";
 
     document.getElementById("confirmButton").disabled = true;
 
-    setTimeout(function() {
+    setTimeout(() => {
 
         currentQuestion++;
 
@@ -624,9 +958,9 @@ function timeIsUp() {
 }
 
 
-/* =====================================================
-   15. NATIJA
-===================================================== */
+// ===============================
+// NATIJA
+// ===============================
 
 function showResult() {
 
@@ -637,38 +971,32 @@ function showResult() {
     document.getElementById("score").textContent =
         score;
 
-    const maxScore =
-        questions.length * 10;
+    let message = "";
 
-    const percentage =
-        (score / maxScore) * 100;
+    if (score >= 40) {
 
-    let resultText;
+        message =
+            "Mavzu bo‘yicha bilimlaringiz yaxshi shakllangan.";
 
-    if (percentage >= 80) {
+    } else if (score >= 30) {
 
-        resultText =
-            "Ajoyib natija! Mavzu yaxshi o‘zlashtirilgan.";
-
-    } else if (percentage >= 60) {
-
-        resultText =
-            "Yaxshi natija. Mavzuni yana bir bor takrorlash foydali.";
+        message =
+            "Asosiy tushunchalarni o‘zlashtirgansiz, ayrim jihatlarni takrorlash foydali.";
 
     } else {
 
-        resultText =
-            "Mavzuni qayta ko‘rib chiqish tavsiya etiladi.";
+        message =
+            "Mavzuni yana bir bor ko‘rib chiqish tavsiya etiladi.";
     }
 
     document.getElementById("resultText").textContent =
-        resultText;
+        message;
 }
 
 
-/* =====================================================
-   16. YAKUNIY EKRAN
-===================================================== */
+// ===============================
+// YAKUNIY EKRAN
+// ===============================
 
 function showFinal() {
 
@@ -676,21 +1004,43 @@ function showFinal() {
 }
 
 
-/* =====================================================
-   17. QAYTA BOSHLASH
-===================================================== */
+// ===============================
+// QAYTA BOSHLASH
+// ===============================
 
 function restartLesson() {
 
     clearInterval(timerInterval);
 
     currentSlide = 0;
-
     currentQuestion = 0;
-
     score = 0;
-
     selectedAnswer = null;
 
     showScreen("home");
 }
+
+
+// ===============================
+// KLAVIATURA BOSHQARUVI
+// ===============================
+
+document.addEventListener("keydown", event => {
+
+    const lesson =
+        document.getElementById("lesson");
+
+    if (!lesson || !lesson.classList.contains("active")) {
+        return;
+    }
+
+    if (event.key === "ArrowRight") {
+
+        nextSlide();
+    }
+
+    if (event.key === "ArrowLeft") {
+
+        previousSlide();
+    }
+});
