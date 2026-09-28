@@ -52,3 +52,32 @@ function loadQuestion(){selected=null;timeLeft=30;$('#timer').textContent=timeLe
 function confirmAnswer(timeout=false){if(!selected&&!timeout)return;clearInterval(timerId);if(selected===questions[qIndex].correct)correct++;qIndex++;if(qIndex<questions.length){setTimeout(loadQuestion,timeout?250:180)}else setTimeout(showResult,180)}
 function showResult(){showScreen('result');const total=questions.length,wrong=total-correct,percent=Math.round(correct/total*100);$('#score').textContent=percent+'%';$('#correctCount').textContent=correct;$('#wrongCount').textContent=wrong;$('#resultTotal').textContent=total;$('#resultText').textContent=percent>=80?'Mavzu bo‘yicha bilimlar yaxshi o‘zlashtirilgan.':percent>=60?'Asosiy tushunchalar o‘zlashtirilgan, ayrim qismlarni takrorlash foydali.':'Nazariy bloklarni qayta ko‘rib chiqish tavsiya etiladi.'}
 $('#startLessonBtn').addEventListener('click',startLesson);$('#startTestBtn').addEventListener('click',startTest);$('#nextBtn').addEventListener('click',nextSlide);$('#prevBtn').addEventListener('click',prevSlide);$('#confirmBtn').addEventListener('click',()=>confirmAnswer(false));$('#retryBtn').addEventListener('click',startTest);$('#homeBtn').addEventListener('click',()=>showScreen('home'));renderSlide();
+
+/* V2 visual layer */
+(function(){
+  const shell=document.querySelector('.app-shell');
+  if(shell){for(let i=0;i<22;i++){const p=document.createElement('i');p.className='particle';p.style.left=(Math.random()*100)+'vw';p.style.animationDelay=(-Math.random()*18)+'s';p.style.animationDuration=(9+Math.random()*12)+'s';shell.appendChild(p)}}
+  const originalLoad=window.loadQuestion;
+  const timerEl=document.getElementById('timer');
+  const observer=new MutationObserver(()=>{if(timerEl){const n=parseInt(timerEl.textContent)||0;timerEl.classList.toggle('warning',n<=8)}});
+  if(timerEl) observer.observe(timerEl,{childList:true,subtree:true,characterData:true});
+})();
+(function(){
+  const result=document.getElementById('result');
+  if(!result)return;
+  const scoreEl=document.getElementById('score');
+  const obs=new MutationObserver(()=>{
+    const n=parseInt(scoreEl?.textContent)||0;
+    if(n>=80) burstConfetti();
+  });
+  obs.observe(scoreEl,{childList:true,characterData:true,subtree:true});
+  function burstConfetti(){
+    for(let i=0;i<55;i++){
+      const c=document.createElement('i');c.className='confetti';
+      c.style.left='50vw';c.style.top='35vh';
+      c.style.background=['#39d5ff','#8b6cff','#39e6a0','#ffd166','#ff5572'][i%5];
+      c.style.setProperty('--x',((Math.random()-.5)*90)+'vw');c.style.setProperty('--y',(45+Math.random()*45)+'vh');
+      c.style.animationDelay=(Math.random()*.25)+'s';document.body.appendChild(c);setTimeout(()=>c.remove(),2300);
+    }
+  }
+})();
