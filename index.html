@@ -16,7 +16,7 @@
           <h1>Ta’lim texnologiyalariga asoslangan <span>dars rejasini tuzish</span></h1>
           <p class="subject">📚 Metallar va metallmaslarga ishlov berishni o‘qitish metodikasi</p>
           <div class="author-box">👤 <span>Mualliflar:</span> <b>Abdishukurov Parviz · Ashirova Dilbar</b></div>
-          <div class="home-actions"><button class="btn btn-primary btn-xl" id="startLessonBtn">📖 DARSNI BOSHLASH <span>→</span></button><button class="btn btn-secondary btn-xl" id="startTestBtn">⚡ TESTGA O‘TISH <span>10 SAVOL</span></button></div>
+          <div class="home-actions"><button type="button" class="btn btn-primary btn-xl" id="startLessonBtn">📖 DARSNI BOSHLASH <span>→</span></button><button type="button" class="btn btn-secondary btn-xl" id="startTestBtn">⚡ TESTGA O‘TISH <span>10 SAVOL</span></button></div>
           <div class="feature-row"><div>🧩 <b>7</b><small>interaktiv blok</small></div><div>📝 <b>10</b><small>tasodifiy savol</small></div><div>⏱️ <b>30s</b><small>har bir savol</small></div></div>
         </div>
         <div class="hero-visual"><div class="orbit orbit-1"></div><div class="orbit orbit-2"></div><div class="visual-glow"></div><div class="image-frame"><img src="images/interaktiv-dars.jpg" alt="Interaktiv dars"></div><div class="floating-tag tag-a">💡 MAQSAD</div><div class="floating-tag tag-b">⚙️ JARAYON</div><div class="floating-tag tag-c">🏆 NATIJA</div><div class="visual-caption"><small>O‘QUV MODELI</small><b>MAQSAD → JARAYON → NATIJA</b></div></div>
@@ -30,16 +30,16 @@
         <aside class="lesson-rail" id="lessonRail"></aside>
         <article class="lesson-card glass"><div class="slide-meta" id="slideLabel"></div><div class="slide-icon" id="slideIcon">🎓</div><p class="slide-text" id="slideText"></p><div class="hint">👇 Tugmalardan birini bosing — batafsil izoh shu yerda ochiladi.</div><div id="slideActions" class="action-grid"></div><div id="slideInfo" class="info-panel hidden"></div></article>
       </div>
-      <div class="nav-row"><button class="btn btn-ghost" id="prevBtn">← ORTGA</button><div class="nav-hint">💡 Interaktiv doskada tugmalarni bosib izohni oching</div><button class="btn btn-primary" id="nextBtn">KEYINGI →</button></div>
+      <div class="nav-row"><button type="button" class="btn btn-ghost" id="prevBtn">← ORTGA</button><div class="nav-hint">💡 Interaktiv doskada tugmalarni bosib izohni oching</div><button type="button" class="btn btn-primary" id="nextBtn">KEYINGI →</button></div>
     </section>
 
     <section id="test" class="screen">
       <div class="test-top"><div><div class="eyebrow">⚡ MINI CHALLENGE</div><h2>Savol <span id="questionNo">1</span> <em>/ 10</em></h2></div><div class="timer-wrap"><span>VAQT</span><div class="timer" id="timer">30</div></div></div>
       <div class="progress test-progress"><i id="testProgress"></i></div>
-      <article class="question-card glass"><div class="question-meta"><div class="difficulty" id="difficulty">OSON</div><div id="answerState">👆 Variantni tanlang</div></div><h3 id="questionText">Savol yuklanmoqda...</h3><div id="answers" class="answers"></div><div class="test-actions"><div class="mini-tip">💡 Javobni tanlang va <b>TASDIQLASH</b> tugmasini bosing.</div><button class="btn btn-primary" id="confirmBtn" disabled>✓ TASDIQLASH</button></div></article>
+      <article class="question-card glass"><div class="question-meta"><div class="difficulty" id="difficulty">OSON</div><div id="answerState">👆 Variantni tanlang</div></div><h3 id="questionText">Savol yuklanmoqda...</h3><div id="answers" class="answers"></div><div class="test-actions"><div class="mini-tip">💡 Javobni tanlang va <b>TASDIQLASH</b> tugmasini bosing.</div><button type="button" class="btn btn-primary" id="confirmBtn" disabled>✓ TASDIQLASH</button></div></article>
     </section>
 
-    <section id="result" class="screen"><div class="result-card glass"><div class="result-icon">🏆</div><div class="eyebrow">TEST YAKUNLANDI</div><h2>Natijangiz</h2><div class="score-ring"><div class="score" id="score">0%</div></div><p id="resultText"></p><div class="result-stats"><div><b id="correctCount">0</b><span>✅ To‘g‘ri</span></div><div><b id="wrongCount">0</b><span>❌ Xato</span></div><div><b id="resultTotal">10</b><span>📋 Jami</span></div></div><div class="result-actions"><button class="btn btn-primary" id="retryBtn">↻ QAYTA ISHLASH</button><button class="btn btn-secondary" id="homeBtn">⌂ BOSH SAHIFA</button></div></div></section>
+    <section id="result" class="screen"><div class="result-card glass"><div class="result-icon">🏆</div><div class="eyebrow">TEST YAKUNLANDI</div><h2>Natijangiz</h2><div class="score-ring"><div class="score" id="score">0%</div></div><p id="resultText"></p><div class="result-stats"><div><b id="correctCount">0</b><span>✅ To‘g‘ri</span></div><div><b id="wrongCount">0</b><span>❌ Xato</span></div><div><b id="resultTotal">10</b><span>📋 Jami</span></div></div><div class="result-actions"><button type="button" class="btn btn-primary" id="retryBtn">↻ QAYTA ISHLASH</button><button type="button" class="btn btn-secondary" id="homeBtn">⌂ BOSH SAHIFA</button></div></div></section>
   </main>
 </div><script src="script.js"></script>
 </body></html>
