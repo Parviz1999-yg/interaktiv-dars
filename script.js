@@ -33,3 +33,17 @@ document.addEventListener('DOMContentLoaded',()=>{
   renderSlide();
   makeParticles();
 });
+
+// V7 touch/ripple polish: does not alter the lesson content or test logic.
+document.addEventListener('pointerdown',(e)=>{
+  const target=e.target.closest('.btn,.action-btn,.answer,.rail-dot');
+  if(!target || target.disabled) return;
+  target.classList.remove('tap-pulse');
+  void target.offsetWidth;
+  target.classList.add('tap-pulse');
+},{passive:true});
+
+window.addEventListener('resize',()=>{
+  document.documentElement.style.setProperty('--vh',`${window.innerHeight * 0.01}px`);
+});
+document.documentElement.style.setProperty('--vh',`${window.innerHeight * 0.01}px`);
