@@ -98,3 +98,55 @@ img{max-width:100%;height:auto}
 }
 .tap-pulse{animation:tapPulse .28s ease}
 @keyframes tapPulse{50%{filter:brightness(1.22);box-shadow:0 0 28px rgba(70,221,255,.24)}}
+
+/* V8 — mobil scroll tuzatildi: asosiy sahifa tabiiy ravishda tepaga-pastga suriladi. */
+html, body {
+  min-height: 100%;
+  overflow-x: hidden;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+@media (max-width: 900px) {
+  .app-shell {
+    min-height: 100svh;
+    overflow: visible;
+  }
+
+  .screen {
+    overflow: visible;
+    min-height: auto;
+  }
+
+  .lesson-card {
+    max-height: none;
+    overflow: visible;
+    overscroll-behavior: auto;
+  }
+
+  .info-panel {
+    max-height: none;
+    overflow: visible;
+    overscroll-behavior: auto;
+  }
+}
+
+@media (max-width: 600px) {
+  body {
+    touch-action: pan-y pinch-zoom;
+  }
+
+  .app-shell {
+    overflow: visible;
+  }
+
+  .screen {
+    overflow: visible;
+  }
+
+  .lesson-card,
+  .info-panel {
+    overflow: visible;
+    max-height: none;
+  }
+}
