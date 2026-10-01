@@ -167,3 +167,13 @@ document.addEventListener('DOMContentLoaded',()=>{
   document.getElementById('canvaNext').onclick=()=>{canvaIndex=(canvaIndex+1)%canvaSlides.length;renderCanvaSlide()};
   document.getElementById('canvaFullscreen').onclick=()=>{const stage=document.querySelector('.canva-slide-stage');if(stage.requestFullscreen)stage.requestFullscreen()};
 });
+
+
+document.addEventListener('DOMContentLoaded',()=>{
+  const img=document.getElementById('canvaSlideImage');
+  if(!img)return;
+  img.addEventListener('error',()=>{
+    const i=canvaIndex;
+    if(canvaFallbacks && canvaFallbacks[i] && img.src!==canvaFallbacks[i]) img.src=canvaFallbacks[i];
+  });
+});
