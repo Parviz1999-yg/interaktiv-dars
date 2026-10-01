@@ -2,9 +2,6 @@ name: Optimize slide images
 
 on:
   push:
-    paths:
-      - "images/*.png"
-      - ".github/workflows/optimize-images.yml"
 
 permissions:
   contents: write
