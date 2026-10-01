@@ -223,13 +223,68 @@ document.addEventListener('DOMContentLoaded',()=>{
   const stage=document.querySelector('.canva-slide-stage');
   const fullscreen=document.getElementById('canvaFullscreen');
   const exitFullscreen=document.getElementById('canvaExitFullscreen');
-  fullscreen.onclick=()=>{if(stage.requestFullscreen)stage.requestFullscreen();};
-  exitFullscreen.onclick=()=>{if(document.fullscreenElement)document.exitFullscreen();};
-  document.addEventListener('keydown',e=>{
-    if(e.key==='ArrowRight'){canvaIndex=(canvaIndex+1)%canvaSlides.length;renderCanvaSlide()}
-    if(e.key==='ArrowLeft'){canvaIndex=(canvaIndex-1+canvaSlides.length)%canvaSlides.length;renderCanvaSlide()}
-    if(e.key==='Escape'&&document.fullscreenElement)document.exitFullscreen();
+
+  // Haqiqiy browser fullscreen: slaydning o'zi butun ekranni egallaydi.
+  fullscreen.onclick=async()=>{
+    try{
+      if(!document.fullscreenElement){
+        if(stage.requestFullscreen) await stage.requestFullscreen();
+        else if(stage.webkitRequestFullscreen) stage.webkitRequestFullscreen();
+      }
+    }catch(err){ console.warn('Fullscreen ochilmadi:',err); }
+  };
+  exitFullscreen.onclick=()=>{
+    if(document.fullscreenElement) document.exitFullscreen();
+    else if(document.webkitFullscreenElement && document.webkitExitFullscreen) document.webkitExitFullscreen();
+  };
+
+  // Fullscreen ichida chap/o'ng tomonni bosib o'tkazish.
+  ['fullscreenchange','webkitfullscreenchange'].forEach(ev=>{
+    document.addEventListener(ev,()=>{
+      const active=!!(document.fullscreenElement||document.webkitFullscreenElement);
+      stage.classList.toggle('presentation-active',active);
+    });
   });
+
+  const goNext=()=>{canvaIndex=(canvaIndex+1)%canvaSlides.length;renderCanvaSlide()};
+  const goPrev=()=>{canvaIndex=(canvaIndex-1+canvaSlides.length)%canvaSlides.length;renderCanvaSlide()};
+
+  // Klaviatura: ← →, Esc.
+  document.addEventListener('keydown',e=>{
+    if(e.key==='ArrowRight'){e.preventDefault();goNext()}
+    if(e.key==='ArrowLeft'){e.preventDefault();goPrev()}
+    if(e.key==='Escape'&&(document.fullscreenElement||document.webkitFullscreenElement)){
+      if(document.fullscreenElement) document.exitFullscreen();
+      else if(document.webkitExitFullscreen) document.webkitExitFullscreen();
+    }
+  });
+
+  // Sichqoncha/touch bilan slaydning chetini bosish.
+  let touchStartX=0,touchStartY=0;
+  stage.addEventListener('click',e=>{
+    if(!(document.fullscreenElement||document.webkitFullscreenElement)) return;
+    if(e.target.closest('button,a')) return;
+    const rect=stage.getBoundingClientRect(),x=e.clientX-rect.left;
+    if(x<rect.width*.35) goPrev();
+    else if(x>rect.width*.65) goNext();
+  });
+  stage.addEventListener('touchstart',e=>{
+    if(!(document.fullscreenElement||document.webkitFullscreenElement)) return;
+    const t=e.changedTouches[0];touchStartX=t.clientX;touchStartY=t.clientY;
+  },{passive:true});
+  stage.addEventListener('touchend',e=>{
+    if(!(document.fullscreenElement||document.webkitFullscreenElement)) return;
+    const t=e.changedTouches[0],dx=t.clientX-touchStartX,dy=t.clientY-touchStartY;
+    if(Math.abs(dx)>55&&Math.abs(dx)>Math.abs(dy)*1.2){if(dx<0)goNext();else goPrev()}
+  },{passive:true});
+
+  // Fullscreen navigatsiya zonalari.
+  const prevHit=document.createElement('button'),nextHit=document.createElement('button');
+  prevHit.type='button';prevHit.className='canva-present-hit prev';prevHit.setAttribute('aria-label','Oldingi slayd');
+  nextHit.type='button';nextHit.className='canva-present-hit next';nextHit.setAttribute('aria-label','Keyingi slayd');
+  stage.append(prevHit,nextHit);
+  prevHit.onclick=e=>{e.stopPropagation();goPrev()};
+  nextHit.onclick=e=>{e.stopPropagation();goNext()};
   img.addEventListener('load',()=>{const l=document.getElementById('canvaLoading');if(l)l.classList.remove('show')});
   preloadCanvaSlide(1);
   preloadCanvaSlide(2);
