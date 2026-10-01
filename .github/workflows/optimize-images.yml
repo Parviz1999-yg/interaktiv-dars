@@ -27,7 +27,10 @@ jobs:
               *.jpg)  out="${f%.jpg}.webp" ;;
               *.jpeg) out="${f%.jpeg}.webp" ;;
             esac
-            cwebp -quiet -lossless "$f" -o "$out"
+            case "$f" in
+              *.png)  cwebp -quiet -lossless "$f" -o "$out" ;;
+              *.jpg|*.jpeg) cwebp -quiet -q 90 -m 6 "$f" -o "$out" ;;
+            esac
           done
 
       - name: Commit WebP files
