@@ -7,7 +7,7 @@
 <body>
 <div class="app-shell">
   <div class="ambient ambient-a"></div><div class="ambient ambient-b"></div><div class="ambient ambient-c"></div><div class="grid-bg"></div><div class="scanline"></div><div id="particles"></div>
-  <header class="topbar"><div class="brand"><span class="brand-mark">S</span><div><strong>SHDPI</strong><small>Texnologik ta’lim</small></div></div><div class="live-chip"><span class="pulse-dot"></span> INTERAKTIV DARS · 07 BLOK</div></header>
+  <header class="topbar"><div class="brand"><span class="brand-mark">S</span><div><strong>SHDPI</strong><small>Texnologik ta’lim</small></div></div><div class="live-chip"><span class="pulse-dot"></span> INTERAKTIV DARS · 07 BLOK · 03 TOPSHIRIQ</div></header>
   <main>
     <section id="home" class="screen active">
       <div class="home-layout">
@@ -15,9 +15,9 @@
           <div class="eyebrow">🎓 INTERAKTIV TA’LIM LABORATORIYASI</div>
           <h1>Ta’lim texnologiyalariga asoslangan <span>dars rejasini tuzish</span></h1>
           <p class="subject">📚 Metallar va metallmaslarga ishlov berishni o‘qitish metodikasi</p>
-          <div class="author-box">👤 <span>Mualliflar:</span> <b>Abdishukurov Parviz · Ashirova Dilbar</b></div>
+          <div class="author-box">👤 <span>Mualliflar:</span> <b>Normo‘minova Hulkar · Ashirova Dilbar</b></div>
           <div class="home-actions"><button type="button" class="btn btn-primary btn-xl" id="startLessonBtn">📖 DARSNI BOSHLASH <span>→</span></button><button type="button" class="btn btn-secondary btn-xl" id="startTestBtn">⚡ TESTGA O‘TISH <span>10 SAVOL</span></button><a class="btn btn-secondary btn-xl" href="https://canva.link/47e832bf0btgg8h" target="_blank" rel="noopener">🎨 VIZUAL MATERIALLAR <span>CANVA ↗</span></a></div>
-          <div class="feature-row"><div>🧩 <b>7</b><small>interaktiv blok</small></div><div>📝 <b>10</b><small>tasodifiy savol</small></div><div>⏱️ <b>30s</b><small>har bir savol</small></div></div>
+          <div class="feature-row"><div>🧩 <b>7</b><small>nazariy blok</small></div><div>🧪 <b>3</b><small>amaliy topshiriq</small></div><div>📝 <b>10</b><small>tasodifiy savol</small></div><div>⏱️ <b>30s</b><small>har bir savol</small></div></div>
         </div>
         <div class="hero-visual"><div class="orbit orbit-1"></div><div class="orbit orbit-2"></div><div class="visual-glow"></div><div class="image-frame"><img src="images/interaktiv-dars.jpg" alt="Interaktiv dars"></div><div class="floating-tag tag-a">💡 MAQSAD</div><div class="floating-tag tag-b">⚙️ JARAYON</div><div class="floating-tag tag-c">🏆 NATIJA</div><div class="visual-caption"><small>O‘QUV MODELI</small><b>MAQSAD → JARAYON → NATIJA</b></div></div>
       </div>
@@ -33,13 +33,39 @@
       <div class="nav-row"><button type="button" class="btn btn-ghost" id="prevBtn">← ORTGA</button><div class="nav-hint">💡 Interaktiv doskada tugmalarni bosib izohni oching</div><button type="button" class="btn btn-primary" id="nextBtn">KEYINGI →</button></div>
     </section>
 
-    <section id="test" class="screen">
-      <div class="test-top"><div><div class="eyebrow">⚡ MINI CHALLENGE</div><h2>Savol <span id="questionNo">1</span> <em>/ 10</em></h2></div><div class="timer-wrap"><span>VAQT</span><div class="timer" id="timer">30</div></div></div>
-      <div class="progress test-progress"><i id="testProgress"></i></div>
-      <article class="question-card glass"><div class="question-meta"><div class="difficulty" id="difficulty">OSON</div><div id="answerState">👆 Variantni tanlang</div></div><h3 id="questionText">Savol yuklanmoqda...</h3><div id="answers" class="answers"></div><div class="test-actions"><div class="mini-tip">💡 Javobni tanlang va <b>TASDIQLASH</b> tugmasini bosing.</div><button type="button" class="btn btn-primary" id="confirmBtn" disabled>✓ TASDIQLASH</button></div></article>
+    <section id="practice" class="screen">
+      <div class="practice-head">
+        <div><div class="eyebrow">🧪 AMALIY LABORATORIYA</div><h2>Bilimni amalda sinab ko‘ring</h2><p>3 ta qisqa topshiriq: ketma-ketlik, metod tanlash va dars konstruktori.</p></div>
+        <div class="practice-score"><span id="practiceDone">0</span><small>/ 3 bajarildi</small></div>
+      </div>
+      <div class="practice-progress"><i id="practiceProgress"></i></div>
+      <div class="practice-grid">
+        <article class="practice-card glass">
+          <div class="task-top"><span>01</span><b>🧩 Dars zanjirini tuzing</b></div>
+          <p>Mantiqiy ketma-ketlikni tanlang: dars loyihasi qaysi tartibda quriladi?</p>
+          <div id="sequenceChoices" class="sequence-list"></div>
+          <div class="task-actions"><button class="btn btn-primary" id="sequenceCheck">✓ TEKSHIRISH</button><div id="sequenceFeedback" class="task-feedback"></div></div>
+        </article>
+        <article class="practice-card glass">
+          <div class="task-top"><span>02</span><b>🤝 Metodni tanlang</b></div>
+          <p>O‘quvchilar 4 kishilik guruhlarda metallga ishlov berish bosqichlarini muhokama qilib, umumiy yechim taqdim etishadi.</p>
+          <div id="scenarioChoices" class="choice-grid"></div>
+          <div id="scenarioFeedback" class="task-feedback"></div>
+        </article>
+        <article class="practice-card glass">
+          <div class="task-top"><span>03</span><b>🏗️ Dars konstruktorini yig‘ing</b></div>
+          <p>Maqsad — amaliy ko‘nikma. Eng mos faoliyat va baholashni tanlang.</p>
+          <div id="constructorChoices" class="constructor-grid"></div>
+          <div id="constructorFeedback" class="task-feedback"></div>
+        </article>
+      </div>
+      <div class="practice-nav">
+        <button class="btn btn-ghost" id="practiceBackBtn">← NAZARIYAGA</button>
+        <button class="btn btn-primary" id="practiceTestBtn" disabled>⚡ TESTGA O‘TISH</button>
+      </div>
     </section>
 
-    <section id="result" class="screen"><div class="result-card glass"><div class="result-icon">🏆</div><div class="eyebrow">TEST YAKUNLANDI</div><h2>Natijangiz</h2><div class="score-ring"><div class="score" id="score">0%</div></div><p id="resultText"></p><div class="result-stats"><div><b id="correctCount">0</b><span>✅ To‘g‘ri</span></div><div><b id="wrongCount">0</b><span>❌ Xato</span></div><div><b id="resultTotal">10</b><span>📋 Jami</span></div></div><div class="result-actions"><button type="button" class="btn btn-primary" id="retryBtn">↻ QAYTA ISHLASH</button><button type="button" class="btn btn-secondary" id="homeBtn">⌂ BOSH SAHIFA</button></div></div></section>
+    <section id="test" class="screen"><div class="result-card glass"><div class="result-icon">🏆</div><div class="eyebrow">TEST YAKUNLANDI</div><h2>Natijangiz</h2><div class="score-ring"><div class="score" id="score">0%</div></div><p id="resultText"></p><div class="result-stats"><div><b id="correctCount">0</b><span>✅ To‘g‘ri</span></div><div><b id="wrongCount">0</b><span>❌ Xato</span></div><div><b id="resultTotal">10</b><span>📋 Jami</span></div></div><div class="result-badge" id="resultBadge">AMALIY + NAZARIY</div><div class="result-actions"><button type="button" class="btn btn-primary" id="retryBtn">↻ QAYTA ISHLASH</button><button type="button" class="btn btn-secondary" id="homeBtn">⌂ BOSH SAHIFA</button></div></div></section>
   </main>
 </div><script src="script.js"></script>
 </body></html>
