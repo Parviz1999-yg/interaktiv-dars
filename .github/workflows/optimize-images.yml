@@ -1,0 +1,42 @@
+name: Optimize slide images
+
+on:
+  push:
+    paths:
+      - "images/*.png"
+      - ".github/workflows/optimize-images.yml"
+
+permissions:
+  contents: write
+
+jobs:
+  convert:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Install WebP tools
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y webp
+
+      - name: Convert slides to WebP
+        run: |
+          for f in images/*.png; do
+            [ -f "$f" ] || continue
+            out="${f%.png}.webp"
+            cwebp -quiet -q 82 "$f" -o "$out"
+          done
+
+      - name: Commit WebP files
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add images/*.webp
+          if git diff --cached --quiet; then
+            echo "No WebP changes."
+            exit 0
+          fi
+          git commit -m "Optimize lesson slides as WebP"
+          git push
