@@ -67,9 +67,24 @@ function initPractice(){
   const seq=['Maqsad','Faoliyat','Metod','Vosita','Baholash','Natija'];
   const box=$('#sequenceChoices'); box.innerHTML='';
   shuffle(seq).forEach((name)=>{
-    const b=document.createElement('button'); b.type='button'; b.className='sequence-item'; b.textContent=name;
-    b.onclick=()=>{b.classList.toggle('selected');};
+    const b=document.createElement('button'); b.type='button'; b.className='sequence-item'; b.textContent=name; b.draggable=true;
+    b.addEventListener('dragstart',()=>{b.classList.add('dragging')});
+    b.addEventListener('dragend',()=>{b.classList.remove('dragging')});
+    b.onclick=()=>{
+      const current=box.querySelector('.sequence-item.selected');
+      if(!current){b.classList.add('selected');return}
+      if(current===b){b.classList.remove('selected');return}
+      const marker=document.createComment('swap');
+      current.before(marker); b.before(current); marker.replaceWith(b);
+      current.classList.remove('selected'); b.classList.remove('selected');
+    };
     box.appendChild(b);
+  });
+  box.addEventListener('dragover',(e)=>{
+    e.preventDefault();
+    const dragging=box.querySelector('.dragging'); if(!dragging)return;
+    const after=[...box.querySelectorAll('.sequence-item:not(.dragging)')].find(el=>e.clientY < el.getBoundingClientRect().top+el.offsetHeight/2);
+    if(after) box.insertBefore(dragging,after); else box.appendChild(dragging);
   });
   $('#sequenceCheck').onclick=()=>{
     const picked=[...box.querySelectorAll('.sequence-item.selected')].map(x=>x.textContent);
