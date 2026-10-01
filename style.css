@@ -150,3 +150,43 @@ html, body {
     max-height: none;
   }
 }
+
+
+/* V8 — Amaliy laboratoriya */
+.practice-head{max-width:1250px;margin:0 auto 16px;display:flex;justify-content:space-between;align-items:end;gap:20px}
+.practice-head h2{font-size:clamp(30px,4vw,52px);margin:0 0 8px;letter-spacing:-.03em}
+.practice-head p{margin:0;color:var(--muted);font-size:16px}
+.practice-score{min-width:130px;text-align:center;padding:14px 18px;border:1px solid var(--line);border-radius:18px;background:rgba(255,255,255,.04)}
+.practice-score span{font-size:34px;font-weight:1000;color:var(--cyan)}
+.practice-score small{display:block;color:var(--muted)}
+.practice-progress{max-width:1250px;height:8px;margin:0 auto 26px;border-radius:99px;background:rgba(255,255,255,.07);overflow:hidden}
+.practice-progress i{display:block;width:0;height:100%;background:linear-gradient(90deg,var(--cyan),var(--green));transition:width .45s}
+.practice-grid{max-width:1250px;margin:auto;display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.practice-card{border-radius:25px;padding:24px;min-height:420px}
+.task-top{display:flex;align-items:center;gap:12px;margin-bottom:15px}
+.task-top span{display:grid;place-items:center;width:38px;height:38px;border-radius:12px;background:rgba(70,221,255,.1);border:1px solid var(--line);color:var(--cyan);font-weight:1000}
+.task-top b{font-size:18px}
+.practice-card>p{color:#b8c9db;line-height:1.55;min-height:74px}
+.sequence-list{display:grid;gap:9px}
+.sequence-item{padding:14px;border-radius:14px;border:1px solid rgba(255,255,255,.1);background:rgba(255,255,255,.035);cursor:pointer;font-weight:800;transition:.2s;user-select:none}
+.sequence-item:hover{border-color:var(--cyan);transform:translateX(3px)}
+.sequence-item.selected{border-color:var(--cyan);background:rgba(70,221,255,.12)}
+.sequence-item.correct-pos{border-color:var(--green);background:rgba(70,227,162,.12)}
+.choice-grid{display:grid;gap:10px}
+.task-choice{padding:15px;border-radius:14px;border:1px solid rgba(255,255,255,.1);background:rgba(255,255,255,.035);color:#fff;text-align:left;font-weight:800;cursor:pointer;transition:.2s}
+.task-choice:hover,.task-choice.selected{border-color:var(--cyan);background:rgba(70,221,255,.1);transform:translateY(-2px)}
+.task-choice.correct{border-color:var(--green);background:rgba(70,227,162,.12)}
+.task-choice.wrong{border-color:var(--red);background:rgba(255,98,124,.1)}
+.constructor-grid{display:grid;gap:11px}
+.constructor-row{display:grid;grid-template-columns:90px 1fr;gap:8px;align-items:center}
+.constructor-row label{font-size:11px;color:var(--muted);font-weight:900;text-transform:uppercase}
+.constructor-row select{width:100%;padding:13px;border-radius:13px;border:1px solid rgba(255,255,255,.12);background:#0b2038;color:#fff;font:inherit;outline:none}
+.constructor-row select:focus{border-color:var(--cyan)}
+.task-actions{margin-top:18px;display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+.task-actions .btn{padding:12px 15px;font-size:12px}
+.task-feedback{margin-top:14px;min-height:22px;color:var(--muted);font-size:13px;line-height:1.45}
+.task-feedback.ok{color:var(--green)}.task-feedback.bad{color:var(--red)}
+.practice-nav{max-width:1250px;margin:22px auto 0;display:flex;justify-content:space-between;gap:12px}
+.result-badge{display:inline-block;padding:8px 13px;border:1px solid var(--line);border-radius:99px;color:var(--cyan);font-size:11px;font-weight:900;letter-spacing:.1em}
+@media(max-width:1000px){.practice-grid{grid-template-columns:1fr}.practice-card{min-height:auto}.practice-head{align-items:flex-start}.feature-row{flex-wrap:wrap}}
+@media(max-width:600px){.practice-head{display:block}.practice-score{margin-top:15px}.practice-card{padding:19px}.constructor-row{grid-template-columns:1fr}.practice-nav{flex-direction:column}.practice-nav .btn{width:100%}}
