@@ -24,7 +24,7 @@ function makeParticles(){const box=$('#particles');for(let i=0;i<35;i++){const p
 document.addEventListener('DOMContentLoaded',()=>{
   const bind=(id,fn)=>{const el=document.getElementById(id);if(el)el.addEventListener('click',fn)};
   bind('startLessonBtn',startLesson);
-  bind('startTestBtn',startTest);
+  bind('startTestBtn',startPractice);
   bind('nextBtn',nextSlide);
   bind('prevBtn',prevSlide);
   bind('confirmBtn',()=>confirmAnswer(false));
@@ -92,10 +92,17 @@ function initPractice(){
     const feedback=$('#sequenceFeedback');
     if(picked.length!==correctSeq.length){feedback.textContent='Barcha 6 bosqichni tanlang.';feedback.className='task-feedback bad';return}
     const ok=picked.every((v,i)=>v===correctSeq[i]);
-    [...box.children].forEach((x,i)=>x.classList.toggle('correct-pos',ok));
-    feedback.textContent=ok?'✓ To‘g‘ri! Maqsad → Faoliyat → Metod → Vosita → Baholash → Natija.':'✕ Ketma-ketlik noto‘g‘ri. Belgilangan bosqichlarni qayta tanlang.';
-    feedback.className='task-feedback '+(ok?'ok':'bad');
-    if(ok){practiceState.sequence=true;updatePracticeProgress();}
+    [...box.children].forEach((x,i)=>x.classList.toggle('correct-pos',ok && i===[...box.children].indexOf(x)));
+    if(ok){
+      feedback.textContent='✓ To‘g‘ri! Maqsad → Faoliyat → Metod → Vosita → Baholash → Natija.';
+      feedback.className='task-feedback ok';
+    }else{
+      feedback.innerHTML='⚠️ Tartib to‘liq mos emas. <b>Tavsiya:</b> avval maqsadni belgilang, keyin o‘quvchi faoliyati, metod va vositani tanlang; oxirida baholash va natijani joylashtiring.';
+      feedback.className='task-feedback bad';
+    }
+    // Har qanday javob topshiriq sifatida qabul qilinadi: xato javob ham keyingi bosqichga o‘tishga to‘sqinlik qilmaydi.
+    practiceState.sequence=true;
+    updatePracticeProgress();
   };
 
   const scenarioBox=$('#scenarioChoices');
@@ -107,9 +114,15 @@ function initPractice(){
       b.classList.add('selected');
       const ok=name==='Hamkorlik';
       b.classList.add(ok?'correct':'wrong');
-      $('#scenarioFeedback').textContent=ok?'✓ To‘g‘ri! Vaziyatda guruhdagi fikr almashish va umumiy natija asosiy faoliyat.':'✕ Bu vaziyatda guruhiy hamkorlik markaziy metod hisoblanadi.';
-      $('#scenarioFeedback').className='task-feedback '+(ok?'ok':'bad');
-      if(ok){practiceState.scenario=true;updatePracticeProgress();}
+      if(ok){
+        $('#scenarioFeedback').textContent='✓ To‘g‘ri! Vaziyatda guruhdagi fikr almashish va umumiy natija asosiy faoliyat.';
+        $('#scenarioFeedback').className='task-feedback ok';
+      }else{
+        $('#scenarioFeedback').innerHTML='⚠️ Bu tanlov mos emas. <b>Tavsiya:</b> o‘quvchilar 4 kishilik guruhda muhokama qilib, umumiy yechim taqdim etayotgan bo‘lsa, <b>Hamkorlik</b> metodini tanlang.';
+        $('#scenarioFeedback').className='task-feedback bad';
+      }
+      practiceState.scenario=true;
+      updatePracticeProgress();
     };
     scenarioBox.appendChild(b);
   });
@@ -131,9 +144,15 @@ function initPractice(){
   check.onclick=()=>{
     const vals=[...cb.querySelectorAll('select')].map(x=>x.value);
     const ok=vals[0]==='Amaliy ko‘nikma'&&vals[1]==='Amaliy bajarish'&&vals[2]==='Mezon asosida kuzatish';
-    $('#constructorFeedback').textContent=ok?'✓ Zo‘r! Maqsad, faoliyat va baholash o‘zaro mos.':'✕ Tanlovlarni maqsadga moslab qayta tekshiring.';
-    $('#constructorFeedback').className='task-feedback '+(ok?'ok':'bad');
-    if(ok){practiceState.constructor=true;updatePracticeProgress();}
+    if(ok){
+      $('#constructorFeedback').textContent='✓ Zo‘r! Maqsad, faoliyat va baholash o‘zaro mos.';
+      $('#constructorFeedback').className='task-feedback ok';
+    }else{
+      $('#constructorFeedback').innerHTML='⚠️ Tanlovlar to‘liq mos emas. <b>Tavsiya:</b> maqsad — <b>Amaliy ko‘nikma</b>, faoliyat — <b>Amaliy bajarish</b>, baholash — <b>Mezon asosida kuzatish</b>.';
+      $('#constructorFeedback').className='task-feedback bad';
+    }
+    practiceState.constructor=true;
+    updatePracticeProgress();
   };
   cb.appendChild(check);
   updatePracticeProgress();
