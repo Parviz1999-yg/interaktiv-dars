@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="uz">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<meta name="theme-color" content="#071426">
+<meta name="description" content="Interaktiv dars — Canva vizual slaydlari">
+<meta name="color-scheme" content="dark">
+<title>Vizual slaydlar — Interaktiv dars</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="app-shell">
+  <div class="ambient ambient-a"></div><div class="ambient ambient-b"></div><div class="ambient ambient-c"></div><div class="grid-bg"></div><div class="scanline"></div><div id="particles"></div>
+  <header class="topbar">
+    <div class="brand"><span class="brand-mark">S</span><div><strong>SHDPI</strong><small>Texnologik ta’lim</small></div></div>
+    <div class="live-chip"><span class="pulse-dot"></span> VIZUAL SLAYDLAR · 06 SLAYD</div>
+  </header>
+  <main>
+    <section class="screen active">
+      <div class="lesson-head">
+        <div><div class="eyebrow">🎨 VIZUAL MATERIALLAR</div><h2>Canva slaydlari</h2><p class="subject">Dars uchun tayyorlangan 6 ta vizual material</p></div>
+        <a class="btn btn-ghost" href="index.html">← ASOSIY SAHIFA</a>
+      </div>
+
+      <section id="canvaMaterials" class="canva-materials glass">
+        <div class="canva-materials-head">
+          <div>
+            <div class="eyebrow">📚 INTERAKTIV KO‘RISH</div>
+            <h2>Slaydlarni sayt ichida ko‘ring</h2>
+            <p>Oldingi va keyingi tugmalari, slayd tanlash nuqtalari hamda to‘liq ekran rejimi mavjud.</p>
+          </div>
+          <a class="btn btn-secondary" href="https://canva.link/47e832bf0btgg8h" target="_blank" rel="noopener">CANVA'DA OCHISH ↗</a>
+        </div>
+        <div class="canva-gallery">
+          <button type="button" class="gallery-nav gallery-prev" id="canvaPrev" aria-label="Oldingi slayd">‹</button>
+          <div class="canva-slide-stage">
+            <img id="canvaSlideImage" src="images/1.png" alt="Canva slayd 1">
+            <div class="canva-slide-overlay"><span id="canvaSlideCounter">1 / 6</span><button type="button" id="canvaFullscreen" class="btn btn-secondary">⛶ TO‘LIQ EKRAN</button></div>
+          </div>
+          <button type="button" class="gallery-nav gallery-next" id="canvaNext" aria-label="Keyingi slayd">›</button>
+        </div>
+        <div class="canva-dots" id="canvaDots" aria-label="Slaydlar"></div>
+      </section>
+    </section>
+  </main>
+</div>
+<script src="script.js"></script>
+</body>
+</html>
