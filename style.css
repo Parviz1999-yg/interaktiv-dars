@@ -190,3 +190,18 @@ html, body {
 .result-badge{display:inline-block;padding:8px 13px;border:1px solid var(--line);border-radius:99px;color:var(--cyan);font-size:11px;font-weight:900;letter-spacing:.1em}
 @media(max-width:1000px){.practice-grid{grid-template-columns:1fr}.practice-card{min-height:auto}.practice-head{align-items:flex-start}.feature-row{flex-wrap:wrap}}
 @media(max-width:600px){.practice-head{display:block}.practice-score{margin-top:15px}.practice-card{padding:19px}.constructor-row{grid-template-columns:1fr}.practice-nav{flex-direction:column}.practice-nav .btn{width:100%}}
+
+
+/* V9 — Canva vizual materiallarini sayt ichida ko‘rsatish */
+.canva-materials{max-width:1400px;margin:40px auto 0;padding:28px;border-radius:28px}
+.canva-materials-head{display:flex;justify-content:space-between;align-items:center;gap:24px;margin-bottom:20px}
+.canva-materials-head h2{margin:0 0 8px;font-size:clamp(25px,3vw,40px);letter-spacing:-.03em}
+.canva-materials-head p{margin:0;color:var(--muted);line-height:1.6;max-width:850px}
+.canva-frame-wrap{position:relative;width:100%;aspect-ratio:16/9;overflow:hidden;border-radius:20px;border:1px solid var(--line);background:#071426;box-shadow:0 20px 60px rgba(0,0,0,.28)}
+.canva-frame-wrap iframe{display:block;width:100%;height:100%;border:0}
+@media(max-width:700px){
+  .canva-materials{margin-top:25px;padding:16px;border-radius:20px}
+  .canva-materials-head{display:block}
+  .canva-materials-head .btn{width:100%;margin-top:15px}
+  .canva-frame-wrap{aspect-ratio:9/16;min-height:500px}
+}
