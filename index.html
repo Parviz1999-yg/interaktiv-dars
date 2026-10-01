@@ -65,7 +65,25 @@
       </div>
     </section>
 
-    <section id="test" class="screen"><div class="result-card glass"><div class="result-icon">🏆</div><div class="eyebrow">TEST YAKUNLANDI</div><h2>Natijangiz</h2><div class="score-ring"><div class="score" id="score">0%</div></div><p id="resultText"></p><div class="result-stats"><div><b id="correctCount">0</b><span>✅ To‘g‘ri</span></div><div><b id="wrongCount">0</b><span>❌ Xato</span></div><div><b id="resultTotal">10</b><span>📋 Jami</span></div></div><div class="result-badge" id="resultBadge">AMALIY + NAZARIY</div><div class="result-actions"><button type="button" class="btn btn-primary" id="retryBtn">↻ QAYTA ISHLASH</button><button type="button" class="btn btn-secondary" id="homeBtn">⌂ BOSH SAHIFA</button></div></div></section>
+    <section id="test" class="screen">
+  <div class="test-top">
+    <div><div class="eyebrow">⚡ BILIMNI TEKSHIRISH</div><h2>Test <em>· 10 ta savol</em></h2></div>
+    <div class="timer-wrap"><span>VAQT</span><div class="timer" id="timer">30</div></div>
+  </div>
+  <div class="progress test-progress"><i id="testProgress"></i></div>
+  <article class="question-card glass">
+    <div class="question-meta"><span>Savol <b id="questionNo">1</b> / 10</span><span class="difficulty" id="difficulty">OSON</span></div>
+    <h3 id="questionText">Savol yuklanmoqda...</h3>
+    <div class="answers" id="answers"></div>
+    <div class="test-actions">
+      <span class="mini-tip" id="answerState">👆 Variantni tanlang</span>
+      <button type="button" class="btn btn-primary" id="confirmBtn" disabled>JAVOBNI TASDIQLASH →</button>
+    </div>
+  </article>
+</section>
+<section id="result" class="screen">
+  <div class="result-card glass"><div class="result-icon">🏆</div><div class="eyebrow">TEST YAKUNLANDI</div><h2>Natijangiz</h2><div class="score-ring"><div class="score" id="score">0%</div></div><p id="resultText"></p><div class="result-stats"><div><b id="correctCount">0</b><span>✅ To‘g‘ri</span></div><div><b id="wrongCount">0</b><span>❌ Xato</span></div><div><b id="resultTotal">10</b><span>📋 Jami</span></div></div><div class="result-badge" id="resultBadge">AMALIY + NAZARIY</div><div class="result-actions"><button type="button" class="btn btn-primary" id="retryBtn">↻ QAYTA ISHLASH</button><button type="button" class="btn btn-secondary" id="homeBtn">⌂ BOSH SAHIFA</button></div></div>
+</section>
   </main>
 </div><script src="script.js"></script>
 </body></html>
