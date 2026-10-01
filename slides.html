@@ -30,14 +30,14 @@
             <h2>Slaydlarni sayt ichida ko‘ring</h2>
             <p>Oldingi va keyingi tugmalari, slayd tanlash nuqtalari hamda to‘liq ekran rejimi mavjud.</p>
           </div>
-          <a class="btn btn-secondary" href="https://canva.link/47e832bf0btgg8h" target="_blank" rel="noopener">CANVA'DA OCHISH ↗</a>
+          
         </div>
         <div class="canva-gallery">
           <button type="button" class="gallery-nav gallery-prev" id="canvaPrev" aria-label="Oldingi slayd">‹</button>
           <div class="canva-slide-stage">
-            <img id="canvaSlideImage" src="images/1.png" alt="Canva slayd 1">
+            <div class="canva-loading" id="canvaLoading">SLAYD YUKLANMOQDA…</div><img id="canvaSlideImage" src="images/1.png" alt="Canva slayd 1" decoding="async" fetchpriority="high">
             <div class="canva-slide-overlay"><span id="canvaSlideCounter">1 / 6</span><button type="button" id="canvaFullscreen" class="btn btn-secondary">⛶ TO‘LIQ EKRAN</button></div>
-          </div>
+          <button type="button" id="canvaExitFullscreen" class="btn btn-secondary canva-exit-fullscreen">✕ YOPISH</button></div>
           <button type="button" class="gallery-nav gallery-next" id="canvaNext" aria-label="Keyingi slayd">›</button>
         </div>
         <div class="canva-dots" id="canvaDots" aria-label="Slaydlar"></div>
