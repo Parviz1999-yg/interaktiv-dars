@@ -193,6 +193,9 @@ document.addEventListener('DOMContentLoaded',()=>{
   });
   document.getElementById('canvaPrev').onclick=()=>{canvaIndex=(canvaIndex-1+canvaSlides.length)%canvaSlides.length;renderCanvaSlide()};
   document.getElementById('canvaNext').onclick=()=>{canvaIndex=(canvaIndex+1)%canvaSlides.length;renderCanvaSlide()};
+  const download=document.getElementById('canvaDownload');
+  if(download){download.href=canvaDownloads[canvaIndex];download.download=canvaDownloads[canvaIndex].split('/').pop();}
+
   const stage=document.querySelector('.canva-slide-stage');
   const fullscreen=document.getElementById('canvaFullscreen');
   const exitFullscreen=document.getElementById('canvaExitFullscreen');
