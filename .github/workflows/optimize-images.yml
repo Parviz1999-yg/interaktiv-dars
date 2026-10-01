@@ -1,4 +1,4 @@
-name: Optimize slide images
+name: Optimize project images
 
 on:
   push:
@@ -18,12 +18,16 @@ jobs:
           sudo apt-get update
           sudo apt-get install -y webp
 
-      - name: Convert slides to WebP
+      - name: Convert all project images to lossless WebP
         run: |
-          for f in images/*.png; do
+          for f in images/*.png images/*.jpg images/*.jpeg; do
             [ -f "$f" ] || continue
-            out="${f%.png}.webp"
-            cwebp -quiet -q 82 "$f" -o "$out"
+            case "$f" in
+              *.png)  out="${f%.png}.webp" ;;
+              *.jpg)  out="${f%.jpg}.webp" ;;
+              *.jpeg) out="${f%.jpeg}.webp" ;;
+            esac
+            cwebp -quiet -lossless "$f" -o "$out"
           done
 
       - name: Commit WebP files
@@ -34,8 +38,8 @@ jobs:
           zip -j -q images/slides.zip images/*.png
           git add images/slides.zip
           if git diff --cached --quiet; then
-            echo "No WebP changes."
+            echo "No image changes."
             exit 0
           fi
-          git commit -m "Optimize lesson slides as WebP"
+          git commit -m "Use lossless WebP for project images"
           git push
