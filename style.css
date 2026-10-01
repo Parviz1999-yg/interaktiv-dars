@@ -238,3 +238,22 @@ html, body {
  .canva-slide-overlay .btn{display:none}
  .canva-slide-overlay span{font-size:11px;padding:7px 10px}
 }
+
+/* V11 — haqiqiy taqdimot rejimi */
+.canva-slide-stage{position:relative;isolation:isolate}
+.canva-slide-stage:fullscreen{width:100vw;height:100vh;margin:0;padding:0;border:0;border-radius:0;background:#000;display:grid;place-items:center;overflow:hidden}
+.canva-slide-stage:-webkit-full-screen{width:100vw;height:100vh;margin:0;padding:0;border:0;border-radius:0;background:#000;display:grid;place-items:center;overflow:hidden}
+.canva-slide-stage:fullscreen #canvaSlideImage,.canva-slide-stage:-webkit-full-screen #canvaSlideImage{width:100vw;height:100vh;max-width:none;max-height:none;object-fit:contain;background:#000}
+.canva-slide-stage:fullscreen .canva-slide-overlay,.canva-slide-stage:-webkit-full-screen .canva-slide-overlay{z-index:20;position:absolute;left:0;right:0;bottom:0;padding:18px 22px;background:linear-gradient(transparent,rgba(0,0,0,.78));opacity:0;transition:opacity .25s}
+.canva-slide-stage:fullscreen:hover .canva-slide-overlay,.canva-slide-stage:-webkit-full-screen:hover .canva-slide-overlay{opacity:1}
+.canva-slide-stage:fullscreen .canva-slide-actions .btn:first-child,.canva-slide-stage:-webkit-full-screen .canva-slide-actions .btn:first-child{display:none}
+.canva-exit-fullscreen{display:none!important;position:absolute;right:18px;top:18px;z-index:30}
+.canva-slide-stage:fullscreen .canva-exit-fullscreen,.canva-slide-stage:-webkit-full-screen .canva-exit-fullscreen{display:block!important;opacity:.82}
+.canva-slide-stage:fullscreen .canva-loading,.canva-slide-stage:-webkit-full-screen .canva-loading{z-index:40}
+.canva-present-hit{display:none}
+.canva-slide-stage:fullscreen .canva-present-hit,.canva-slide-stage:-webkit-full-screen .canva-present-hit{display:block;position:absolute;top:0;bottom:0;width:35%;z-index:15;background:transparent;border:0;cursor:pointer}
+.canva-present-hit.prev{left:0}.canva-present-hit.next{right:0}
+@media(max-width:700px){
+  .canva-slide-stage:fullscreen .canva-slide-overlay,.canva-slide-stage:-webkit-full-screen .canva-slide-overlay{opacity:1}
+  .canva-slide-stage:fullscreen .canva-slide-actions .btn,.canva-slide-stage:-webkit-full-screen .canva-slide-actions .btn{padding:11px 14px}
+}
