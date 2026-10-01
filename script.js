@@ -151,29 +151,59 @@ const canvaSlides=["images/1.png","images/2.png","images/3.png","images/4.png","
 const canvaFallbacks=["https://media.canva.com/v2/document-image/hash:-1152373061/height:335/id:DAHWx5oby2g/type:B/width:596?brand=BAGUXdzDbVQ&csig=AAAAAAAAAAAAAAAAAAAAAFj5Imq4u5yJRXGX9pvOiWCRoCmKoB6tvIJ3-pHlJsOs&exp=1790872508&fallback=https%3A%2F%2Fs3.amazonaws.com%2Fdocument-export.canva.com%2Foby2g%2FDAHWx5oby2g%2F2%2Fthumbnail%2F0001.png%3FX-Amz-Algorithm%3DAWS4-HMAC-SHA256%26X-Amz-Credential%3DAKIAQYCGKMUHTDF2ZFFQ%252F20260930%252Fus-east-1%252Fs3%252Faws4_request%26X-Amz-Date%3D20260930T215321Z%26X-Amz-Expires%3D70007%26X-Amz-Signature%3Dd6bc558b962ad11e0401260e0c153d34a583daaa4dbf238f9d09b0744b8dee27%26X-Amz-SignedHeaders%3Dhost%26response-expires%3DThu%252C%252001%2520Oct%25202026%252017%3A20%3A08%2520GMT&osig=AAAAAAAAAAAAAAAAAAAAAFzHdLJIXUFHFIlEwTBPi7J5Ci89RWx2gmAJvsgSxdud&page=1&signed=brand%2Cfallback%2Cpage%2Cversion&signer=document-rpc&version=2","https://media.canva.com/v2/document-image/hash:-2127813037/height:335/id:DAHWx5oby2g/type:B/width:596?brand=BAGUXdzDbVQ&csig=AAAAAAAAAAAAAAAAAAAAANVxx-aeU9PpC3QlgFGhmkeQb9hwtvHaCw92VYDOm-Q9&exp=1790872508&fallback=https%3A%2F%2Fs3.amazonaws.com%2Fdocument-export.canva.com%2Foby2g%2FDAHWx5oby2g%2F2%2Fthumbnail%2F0002.png%3FX-Amz-Algorithm%3DAWS4-HMAC-SHA256%26X-Amz-Credential%3DAKIAQYCGKMUHTDF2ZFFQ%252F20260930%252Fus-east-1%252Fs3%252Faws4_request%26X-Amz-Date%3D20260930T230614Z%26X-Amz-Expires%3D65634%26X-Amz-Signature%3Dfc58cef6dd5b4329136e625c62af106d0154199052449d4562365fa741845c89%26X-Amz-SignedHeaders%3Dhost%26response-expires%3DThu%252C%252001%2520Oct%25202026%252017%3A20%3A08%2520GMT&osig=AAAAAAAAAAAAAAAAAAAAACMb5ucq6mdjQNq3CUow6FJaF_k73XZRqZlfZJp1Quat&page=2&signed=brand%2Cfallback%2Cpage%2Cversion&signer=document-rpc&version=2","https://media.canva.com/v2/document-image/hash:801526193/height:335/id:DAHWx5oby2g/type:B/width:596?brand=BAGUXdzDbVQ&csig=AAAAAAAAAAAAAAAAAAAAAMWoCq3VnIfYtsGdTBfUPoeOdJ00-iA-BN7cvjawGEQX&exp=1790872508&fallback=https%3A%2F%2Fs3.amazonaws.com%2Fdocument-export.canva.com%2Foby2g%2FDAHWx5oby2g%2F2%2Fthumbnail%2F0003.png%3FX-Amz-Algorithm%3DAWS4-HMAC-SHA256%26X-Amz-Credential%3DAKIAQYCGKMUHTDF2ZFFQ%252F20260930%252Fus-east-1%252Fs3%252Faws4_request%26X-Amz-Date%3D20260930T183906Z%26X-Amz-Expires%3D81662%26X-Amz-Signature%3D45a32cd749c51e201b4569c692cbb4a4c53f8238d5209054f741cf6e9a3b75e1%26X-Amz-SignedHeaders%3Dhost%26response-expires%3DThu%252C%252001%2520Oct%25202026%252017%3A20%3A08%2520GMT&osig=AAAAAAAAAAAAAAAAAAAAADJ4q9l7tfVt3dOUteH1PDOblX_cqylZ3lqf45qa8HlF&page=3&signed=brand%2Cfallback%2Cpage%2Cversion&signer=document-rpc&version=2","https://media.canva.com/v2/document-image/hash:258275068/height:335/id:DAHWx5oby2g/type:B/width:596?brand=BAGUXdzDbVQ&csig=AAAAAAAAAAAAAAAAAAAAAKyzv42snLAURh9p0Dkd0O8OP19LxPpSwWsFaWH8ZAAr&exp=1790872508&fallback=https%3A%2F%2Fs3.amazonaws.com%2Fdocument-export.canva.com%2Foby2g%2FDAHWx5oby2g%2F2%2Fthumbnail%2F0004.png%3FX-Amz-Algorithm%3DAWS4-HMAC-SHA256%26X-Amz-Credential%3DAKIAQYCGKMUHTDF2ZFFQ%252F20260930%252Fus-east-1%252Fs3%252Faws4_request%26X-Amz-Date%3D20260930T193233Z%26X-Amz-Expires%3D78455%26X-Amz-Signature%3D53f5e4be6206ea18a8d7595f901c9cb3f08c317744ab45aec46671932c0dba39%26X-Amz-SignedHeaders%3Dhost%26response-expires%3DThu%252C%252001%2520Oct%25202026%252017%3A20%3A08%2520GMT&osig=AAAAAAAAAAAAAAAAAAAAAO5q0j5VHMatj7wI6crKP0XW4axt7zMZoxFur6JJbEAn&page=4&signed=brand%2Cfallback%2Cpage%2Cversion&signer=document-rpc&version=2","https://media.canva.com/v2/document-image/hash:-949013689/height:335/id:DAHWx5oby2g/type:B/width:596?brand=BAGUXdzDbVQ&csig=AAAAAAAAAAAAAAAAAAAAACIOiSnrLsjUhVjJqx_9_whM8kSJthjTwuTtd9SHOnng&exp=1790872508&fallback=https%3A%2F%2Fs3.amazonaws.com%2Fdocument-export.canva.com%2Foby2g%2FDAHWx5oby2g%2F2%2Fthumbnail%2F0005.png%3FX-Amz-Algorithm%3DAWS4-HMAC-SHA256%26X-Amz-Credential%3DAKIAQYCGKMUHTDF2ZFFQ%252F20261001%252Fus-east-1%252Fs3%252Faws4_request%26X-Amz-Date%3D20261001T110350Z%26X-Amz-Expires%3D22578%26X-Amz-Signature%3De359b4475f6a21e0081bb61460744ae5833cba6fb63d9a4ed30b6021be60b3f0%26X-Amz-SignedHeaders%3Dhost%26response-expires%3DThu%252C%252001%2520Oct%25202026%252017%3A20%3A08%2520GMT&osig=AAAAAAAAAAAAAAAAAAAAAKiZSmLLAN4wy0iMgd-BK2-uk11Eh3fQwihmf7A9sQe3&page=5&signed=brand%2Cfallback%2Cpage%2Cversion&signer=document-rpc&version=2","https://media.canva.com/v2/document-image/hash:1358946846/height:335/id:DAHWx5oby2g/type:B/width:596?brand=BAGUXdzDbVQ&csig=AAAAAAAAAAAAAAAAAAAAACYuFzNQQ7szXlp0N51knL08D0SoFdwFusgMXEK7ZUXE&exp=1790872508&fallback=https%3A%2F%2Fs3.amazonaws.com%2Fdocument-export.canva.com%2Foby2g%2FDAHWx5oby2g%2F2%2Fthumbnail%2F0006.png%3FX-Amz-Algorithm%3DAWS4-HMAC-SHA256%26X-Amz-Credential%3DAKIAQYCGKMUHTDF2ZFFQ%252F20260930%252Fus-east-1%252Fs3%252Faws4_request%26X-Amz-Date%3D20261001T235228Z%26X-Amz-Expires%3D62860%26X-Amz-Signature%3D3b65efa4dbaf21eac2d169699b4040c6eebf7e149fbbc6debb422b997a5125ea%26X-Amz-SignedHeaders%3Dhost%26response-expires%3DThu%252C%252001%2520Oct%25202026%252017%3A20%3A08%2520GMT&osig=AAAAAAAAAAAAAAAAAAAAAOtXw9CwEvCbG7L3FohXF6IKK9c90sIX-Drb_Q4pfz31&page=6&signed=brand%2Cfallback%2Cpage%2Cversion&signer=document-rpc&version=2"];
 
 let canvaIndex=0;
+let canvaPreloaded={};
+function preloadCanvaSlide(i){
+  if(i<0||i>=canvaSlides.length||canvaPreloaded[i])return;
+  const im=new Image();
+  im.src=canvaSlides[i];
+  canvaPreloaded[i]=im;
+}
 function renderCanvaSlide(){
-  const img=document.getElementById('canvaSlideImage'), counter=document.getElementById('canvaSlideCounter'), stage=document.querySelector('.canva-slide-stage');
-  if(!img||!counter)return;
+  const img=document.getElementById('canvaSlideImage'), counter=document.getElementById('canvaSlideCounter'), stage=document.querySelector('.canva-slide-stage'), loading=document.getElementById('canvaLoading');
+  if(!img||!counter||!stage)return;
+  const src=canvaSlides[canvaIndex];
   stage.classList.add('changing');
-  setTimeout(()=>{img.src=canvaSlides[canvaIndex];img.alt='Canva slayd '+(canvaIndex+1);counter.textContent=(canvaIndex+1)+' / '+canvaSlides.length;stage.classList.remove('changing')},120);
+  if(loading)loading.classList.add('show');
+  const done=()=>{
+    img.alt='Canva slayd '+(canvaIndex+1);
+    counter.textContent=(canvaIndex+1)+' / '+canvaSlides.length;
+    stage.classList.remove('changing');
+    if(loading)loading.classList.remove('show');
+  };
+  if(img.src.endsWith(src)){
+    done();
+  }else{
+    img.onload=done;
+    img.src=src;
+  }
   document.querySelectorAll('.canva-dot').forEach((d,i)=>d.classList.toggle('active',i===canvaIndex));
+  preloadCanvaSlide((canvaIndex+1)%canvaSlides.length);
+  preloadCanvaSlide((canvaIndex-1+canvaSlides.length)%canvaSlides.length);
 }
 document.addEventListener('DOMContentLoaded',()=>{
   const img=document.getElementById('canvaSlideImage');
   if(!img)return;
   const dots=document.getElementById('canvaDots');
-  canvaSlides.forEach((_,i)=>{const b=document.createElement('button');b.type='button';b.className='canva-dot'+(i===0?' active':'');b.setAttribute('aria-label','Slayd '+(i+1));b.onclick=()=>{canvaIndex=i;renderCanvaSlide()};dots.appendChild(b)});
+  canvaSlides.forEach((_,i)=>{
+    const b=document.createElement('button');
+    b.type='button'; b.className='canva-dot'+(i===0?' active':'');
+    b.setAttribute('aria-label','Slayd '+(i+1));
+    b.onclick=()=>{canvaIndex=i;renderCanvaSlide()};
+    dots.appendChild(b);
+  });
   document.getElementById('canvaPrev').onclick=()=>{canvaIndex=(canvaIndex-1+canvaSlides.length)%canvaSlides.length;renderCanvaSlide()};
   document.getElementById('canvaNext').onclick=()=>{canvaIndex=(canvaIndex+1)%canvaSlides.length;renderCanvaSlide()};
-  document.getElementById('canvaFullscreen').onclick=()=>{const stage=document.querySelector('.canva-slide-stage');if(stage.requestFullscreen)stage.requestFullscreen()};
-});
-
-
-document.addEventListener('DOMContentLoaded',()=>{
-  const img=document.getElementById('canvaSlideImage');
-  if(!img)return;
-  img.addEventListener('error',()=>{
-    const i=canvaIndex;
-    if(canvaFallbacks && canvaFallbacks[i] && img.src!==canvaFallbacks[i]) img.src=canvaFallbacks[i];
+  const stage=document.querySelector('.canva-slide-stage');
+  const fullscreen=document.getElementById('canvaFullscreen');
+  const exitFullscreen=document.getElementById('canvaExitFullscreen');
+  fullscreen.onclick=()=>{if(stage.requestFullscreen)stage.requestFullscreen();};
+  exitFullscreen.onclick=()=>{if(document.fullscreenElement)document.exitFullscreen();};
+  document.addEventListener('keydown',e=>{
+    if(e.key==='ArrowRight'){canvaIndex=(canvaIndex+1)%canvaSlides.length;renderCanvaSlide()}
+    if(e.key==='ArrowLeft'){canvaIndex=(canvaIndex-1+canvaSlides.length)%canvaSlides.length;renderCanvaSlide()}
+    if(e.key==='Escape'&&document.fullscreenElement)document.exitFullscreen();
   });
+  img.addEventListener('load',()=>{const l=document.getElementById('canvaLoading');if(l)l.classList.remove('show')});
+  preloadCanvaSlide(1);
+  preloadCanvaSlide(2);
 });
